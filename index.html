@@ -12,7 +12,6 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
-        /* Thanh tìm kiếm */
         .search-container { display: flex; background: #fff; border-radius: 5px; overflow: hidden; height: 35px; }
         .search-container input { border: none; padding: 0 10px; width: 100px; outline: none; }
         .search-container button { background: var(--gold); border: none; padding: 0 15px; cursor: pointer; font-weight: bold; }
@@ -36,12 +35,10 @@
 
     <header>
         <div class="logo">Hana Nails</div>
-        
         <div class="search-container">
             <input type="text" id="search" placeholder="Nhập MS...">
             <button onclick="searchProduct()">🔍</button>
         </div>
-
         <div class="nav-group">
             <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
             <a href="https://maps.app.goo.gl/aBvmAQfMeuD5JrMMA" target="_blank" class="action-link">📍 Bản đồ</a>
@@ -84,7 +81,8 @@
 
         const container = document.getElementById('main-content');
         
-        for(let i=1; i<=45; i++) {
+        // Cập nhật lên 72 ảnh
+        for(let i=1; i<=72; i++) {
             let code = "MS" + i.toString().padStart(2, '0');
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
             
@@ -108,7 +106,6 @@
 
         function searchProduct() {
             let val = document.getElementById('search').value.toUpperCase();
-            // Đảm bảo định dạng MS01 thay vì chỉ MS1
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
