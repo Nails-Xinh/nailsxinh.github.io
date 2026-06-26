@@ -6,48 +6,60 @@
     <title>Haute Nails Couture - Premium Press-On Nails</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
-        :root { --accent-gold: #d4af37; --bg-dark: #0d0d0d; --surface-dark: #161616; --text-light: #ffffff; --text-muted: #b3b3b3; }
+        
+        /* Bảng màu Tím sang trọng */
+        :root { 
+            --accent-gold: #d4af37; 
+            --bg-deep-purple: #1a0b2e; 
+            --surface-purple: #2d164d; 
+            --text-light: #ffffff; 
+            --text-muted: #d1c4e9; 
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-dark); color: var(--text-light); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { background-color: var(--bg-deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* HEADER */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(13, 13, 13, 0.95); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .brand-logo { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); text-transform: uppercase; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); border-bottom: 1px solid #4a148c; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .brand-logo { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; }
+        
         .nav-right { display: flex; align-items: center; gap: 15px; }
-        .btn-action { padding: 8px 16px; border-radius: 20px; font-size: 12px; text-decoration: none; color: #fff; font-weight: 600; text-transform: uppercase; }
+        .btn-action { padding: 8px 16px; border-radius: 20px; font-size: 12px; text-decoration: none; color: #fff; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
         .btn-zalo { background-color: #0068ff; }
         .btn-mess { background-color: #0084ff; }
-        .lang-toggle { display: flex; border: 1px solid #333; border-radius: 4px; overflow: hidden; }
-        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 5px 10px; font-size: 11px; cursor: pointer; }
-        .lang-btn.active { background-color: var(--accent-gold); color: #000; }
+        
+        .lang-toggle { display: flex; border: 1px solid #7b1fa2; border-radius: 4px; overflow: hidden; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 5px 10px; font-size: 11px; cursor: pointer; transition: 0.3s; }
+        .lang-btn.active { background-color: var(--accent-gold); color: #000; font-weight: bold; }
 
-        /* MARQUEE TỐC ĐỘ CAO */
-        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; cursor: pointer; }
-        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 15s linear infinite; } /* Tốc độ nhanh hơn */
-        .marquee-item { min-width: 200px; background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; transition: transform 0.3s; }
-        .marquee-item:hover { transform: scale(1.05); border-color: var(--accent-gold); }
+        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #120822; cursor: pointer; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 20s linear infinite; width: max-content; }
+        .marquee-item { min-width: 200px; background: var(--surface-purple); border-radius: 8px; overflow: hidden; border: 1px solid #4a148c; transition: 0.3s; }
+        .marquee-item:hover { transform: scale(1.03); border-color: var(--accent-gold); }
         .marquee-item img { width: 100%; height: 200px; object-fit: cover; }
-        .marquee-text { padding: 8px; font-size: 10px; text-align: center; }
+        .marquee-text { padding: 8px; font-size: 10px; text-align: center; color: var(--text-muted); }
 
-        /* LƯỚI SẢN PHẨM */
         .store-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-        .product-card { background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; scroll-margin-top: 100px; }
+        .product-card { background: var(--surface-purple); border-radius: 12px; overflow: hidden; border: 1px solid #4a148c; transition: 0.3s; }
+        .product-card:hover { border-color: var(--accent-gold); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
         .product-card img { width: 100%; height: 280px; object-fit: cover; }
         .product-info { padding: 15px; text-align: center; }
-        .btn-buy { display: block; margin: 10px 0; padding: 10px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
-        .btn-call { color: #fff; text-decoration: underline; font-size: 11px; }
+        .btn-buy { display: block; margin: 10px 0; padding: 12px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 12px; text-transform: uppercase; font-weight: bold; }
+        .btn-buy:hover { background: var(--accent-gold); color: #000; }
+        .btn-call { color: var(--text-muted); text-decoration: underline; font-size: 11px; }
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body>
 
+    <audio id="music-player" loop></audio>
+
     <header>
         <div class="brand-logo">Haute Couture</div>
         <div class="nav-right">
-            <a href="https://zalo.me/YOUR_PHONE" class="btn-action btn-zalo" id="txt-zalo">Zalo</a>
-            <a href="https://m.me/YOUR_PAGE" class="btn-action btn-mess" id="txt-mess">Messenger</a>
+            <a href="https://zalo.me/YOUR_PHONE" class="btn-action btn-zalo">Zalo</a>
+            <a href="https://m.me/YOUR_PAGE" class="btn-action btn-mess">Messenger</a>
             <div class="lang-toggle">
                 <button class="lang-btn active" onclick="setLang('vi')" id="btn-vi">VI</button>
                 <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
@@ -70,6 +82,11 @@
             vi: `Mẫu ${i + 1}`, en: `Design ${i + 1}`
         }));
 
+        const music = {
+            vi: "LINK_NHAC_VIET.mp3",
+            en: "LINK_NHAC_ANH.mp3"
+        };
+
         function init() {
             const track = document.getElementById('marquee-track');
             track.innerHTML = [...marqueeData, ...marqueeData].map(item => `
@@ -84,12 +101,14 @@
                 <div class="product-card" id="${item.id}">
                     <img src="${item.img}" alt="Product">
                     <div class="product-info">
-                        <h3 style="margin-bottom:10px">Nails Couture</h3>
+                        <h3 style="margin-bottom:10px; color:var(--accent-gold)">Nails Couture</h3>
                         <a href="https://zalo.me/YOUR_PHONE" class="btn-buy dynamic-text">Đặt Hàng Ngay</a>
                         <a href="tel:0909000000" class="btn-call dynamic-call">Gọi Tư Vấn</a>
                     </div>
                 </div>
             `).join('');
+            
+            setLang('vi');
         }
 
         function setLang(lang) {
@@ -97,6 +116,10 @@
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.querySelectorAll('.dynamic-text').forEach(el => el.textContent = lang === 'vi' ? 'Đặt Hàng Ngay' : 'Order Now');
             document.querySelectorAll('.dynamic-call').forEach(el => el.textContent = lang === 'vi' ? 'Gọi Tư Vấn' : 'Call Support');
+            
+            const player = document.getElementById('music-player');
+            player.src = (lang === 'vi') ? music.vi : music.en;
+            player.play().catch(() => console.log("User interaction required"));
         }
 
         init();
