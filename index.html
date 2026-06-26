@@ -9,13 +9,12 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --surface-purple: #2d164d; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #1a0b2e; border-bottom: 1px solid #332050; position: sticky; top: 0; z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
+        .nav-btn { background: var(--gold); color: #000; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 11px; text-transform: uppercase; margin-left: 5px; cursor: pointer; border: none; }
 
-        /* DẢI CHỮ CHẠY (TỐC ĐỘ 90S - THƯ THÁI) */
-        .ticker-container { background: #120822; padding: 15px 0; overflow: hidden; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); margin: 20px 0; }
-        .ticker-track { display: flex; white-space: nowrap; animation: scrollMarquee 90s linear infinite; font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 20px; }
-        .ticker-item { margin-right: 100px; }
+        /* CÁC ĐOẠN QUẢNG CÁO CHIA ĐỀU */
+        .ads-section { text-align: center; padding: 40px 10%; font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-style: italic; border-top: 1px solid #332050; }
 
         .marquee-container { width: 100%; overflow: hidden; background: #0e061a; padding: 20px 0; }
         .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 90s linear infinite; width: max-content; }
@@ -34,38 +33,31 @@
 
     <header>
         <div class="logo">Hana Nails</div>
-        <div style="display: flex; gap: 10px;">
-            <a href="https://zalo.me/0937244764" class="btn-buy" style="background:#0068ff; color:#fff; margin:0;">Zalo</a>
-            <a href="https://m.me/100088924357778" class="btn-buy" style="background:#0084ff; color:#fff; margin:0;">Mess</a>
+        <div>
+            <a href="https://zalo.me/0937244764" class="nav-btn" style="background:#0068ff; color:#fff;">Zalo</a>
+            <a href="https://m.me/100088924357778" class="nav-btn" style="background:#0084ff; color:#fff;">Mess</a>
+            <button class="nav-btn" onclick="setLang('vi')">VI</button>
+            <button class="nav-btn" onclick="setLang('en')">EN</button>
         </div>
     </header>
 
-    <!-- Dải chữ chạy chứa 6 câu thông điệp -->
-    <div class="ticker-container">
-        <div class="ticker-track" id="ticker-track"></div>
+    <div class="ads-section" id="welcome-msg" style="padding: 20px 10%; font-size: 18px;">
+        Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn, nhiều niềm vui và nhiều hạnh phúc.
     </div>
-    
+
     <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
+    
+    <div class="ads-section" id="ads1">Đừng chỉ làm móng, hãy tạo nên tuyên ngôn của riêng bạn.</div>
+    <div class="ads-section" id="ads2">Vẻ đẹp không nằm ở sự cầu kỳ, nó nằm ở sự tinh tế trong từng đường nét.</div>
     
     <section class="store-section"><div class="product-grid" id="product-grid"></div></section>
 
+    <div class="ads-section" id="ads3">Hãy để chúng tôi lắng nghe câu chuyện của bạn qua từng thiết kế nail.</div>
+    <div class="ads-section" id="ads4">Nhấn đặt hàng ngay để cùng chúng tôi tạo nên phiên bản hoàn hảo nhất của chính mình.</div>
+    <div class="ads-section" id="ads5">Đôi bàn tay biết nói - hãy để Hana Nails giúp bạn cất tiếng.</div>
+    <div class="ads-section" id="ads6">Nâng niu từng ngón tay, trân trọng từng khoảnh khắc làm đẹp của quý khách.</div>
+
     <script>
-        // Danh sách 6 câu quảng cáo
-        const msgs = [
-            "Đừng chỉ làm móng, hãy tạo nên tuyên ngôn của riêng bạn.",
-            "Vẻ đẹp không nằm ở sự cầu kỳ, nó nằm ở sự tinh tế trong từng đường nét.",
-            "Hãy để chúng tôi lắng nghe câu chuyện của bạn qua từng thiết kế nail.",
-            "Nhấn đặt hàng ngay để cùng chúng tôi tạo nên phiên bản hoàn hảo nhất của chính mình.",
-            "Đôi bàn tay biết nói - hãy để Hana Nails giúp bạn cất tiếng.",
-            "Nâng niu từng ngón tay, trân trọng từng khoảnh khắc làm đẹp của quý khách."
-        ];
-
-        const ticker = document.getElementById('ticker-track');
-        msgs.forEach(text => {
-            ticker.innerHTML += `<div class="ticker-item">${text}</div>`;
-        });
-        ticker.innerHTML += ticker.innerHTML; // Nhân đôi để chạy không ngắt quãng
-
         const grid = document.getElementById('product-grid');
         const track = document.getElementById('marquee-track');
         for(let i=1; i<=45; i++) {
@@ -73,7 +65,22 @@
             grid.innerHTML += `<div class="product-card"><img src="${imgName}" style="width:100%; height:200px; object-fit:cover; border-radius:4px;"><a href="https://m.me/100088924357778" class="btn-buy">Đặt Hàng Ngay</a></div>`;
             track.innerHTML += `<div class="marquee-item"><img src="${imgName}"></div>`;
         }
-        track.innerHTML += track.innerHTML; 
+        track.innerHTML += track.innerHTML;
+
+        function setLang(lang) {
+            const data = (lang === 'vi') ? {
+                w: "Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn, nhiều niềm vui và nhiều hạnh phúc.",
+                a: ["Đừng chỉ làm móng, hãy tạo nên tuyên ngôn của riêng bạn.", "Vẻ đẹp không nằm ở sự cầu kỳ, nó nằm ở sự tinh tế trong từng đường nét.", "Hãy để chúng tôi lắng nghe câu chuyện của bạn qua từng thiết kế nail.", "Nhấn đặt hàng ngay để cùng chúng tôi tạo nên phiên bản hoàn hảo nhất của chính mình.", "Đôi bàn tay biết nói - hãy để Hana Nails giúp bạn cất tiếng.", "Nâng niu từng ngón tay, trân trọng từng khoảnh khắc làm đẹp của quý khách."],
+                b: "Đặt Hàng Ngay"
+            } : {
+                w: "Thank you for visiting, wishing you a day full of luck, joy, and happiness.",
+                a: ["Don't just do nails, create your own statement.", "Beauty doesn't lie in complexity, it lies in the sophistication of every detail.", "Let us listen to your story through every nail design.", "Click order now to create the most perfect version of yourself with us.", "Hands can speak - let Hana Nails help you express yourself.", "Cherishing every finger, treasuring every beauty moment of yours."],
+                b: "Order Now"
+            };
+            document.getElementById('welcome-msg').textContent = data.w;
+            for(let i=1; i<=6; i++) document.getElementById('ads'+i).textContent = data.a[i-1];
+            document.querySelectorAll('.btn-buy').forEach(el => el.textContent = data.b);
+        }
     </script>
 </body>
 </html>
