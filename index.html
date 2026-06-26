@@ -6,29 +6,25 @@
     <title>Hana Nails Couture</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap');
-        :root { --gold: #d4af37; --deep-purple: #1a0b2e; --surface-purple: #2d164d; --text-light: #ffffff; }
+        :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         .nav-group { display: flex; align-items: center; gap: 8px; }
         .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
-        /* Hotline nằm ngang, chuyên nghiệp */
         .hotline-bar { font-size: 14px; color: var(--gold); font-weight: bold; margin-right: 20px; text-decoration: none; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 4px; }
 
         .ads-section { text-align: center; padding: 40px 5%; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-style: italic; }
-        .marquee-container { width: 100%; overflow: hidden; background: #0e061a; padding: 20px 0; border-bottom: 1px solid #332050; }
-        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 90s linear infinite; width: max-content; }
-        .marquee-item { width: 180px; height: 180px; border-radius: 8px; overflow: hidden; border: 1px solid #4a148c; }
-        .marquee-item img { width: 100%; height: 100%; object-fit: contain; background: #000; }
-
-        .store-section { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px; }
-        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; }
-        .product-img { width: 100%; height: 250px; object-fit: contain; background: #1a0b2e; border-radius: 4px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
+        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
+        .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
+        .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; }
         .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
-        
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Zoom ảnh */
+        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        #lightbox img { max-width: 90%; max-height: 90%; }
     </style>
 </head>
 <body>
@@ -39,16 +35,14 @@
             <a href="tel:0937244764" class="hotline-bar">Hotline: 0937 244 764</a>
             <a href="https://zalo.me/0937244764" class="nav-btn" style="background:#0068ff; color:#fff;">Zalo</a>
             <a href="https://m.me/100088924357778" class="nav-btn" style="background:#0084ff; color:#fff;">Mess</a>
-            <a href="https://www.instagram.com/hana26096" class="nav-btn" style="background:linear-gradient(45deg, #f09433, #dc2743); color:#fff;">Insta</a>
             <button class="nav-btn" onclick="setLang('vi')">VI</button>
             <button class="nav-btn" onclick="setLang('en')">EN</button>
         </div>
     </header>
 
-    <div class="ads-section" id="welcome-msg">Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn, nhiều niềm vui và nhiều hạnh phúc.</div>
-    <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
-
-    <section class="store-section" id="main-content"></section>
+    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
+    <div class="ads-section" id="welcome-msg">Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.</div>
+    <section id="main-content"></section>
 
     <script>
         const msgs = [
@@ -59,29 +53,50 @@
             "Từng đường nét thiết kế là một món quà dành riêng cho vẻ đẹp của bạn.",
             "Khẳng định vị thế người dẫn đầu phong cách với những tuyệt phẩm nail.",
             "Sự hài lòng của quý khách chính là thước đo giá trị cho nghệ thuật của chúng tôi.",
-            "Trở thành phiên bản rực rỡ nhất của chính mình ngay từ hôm nay."
+            "Trở thành phiên bản rực rỡ nhất của chính mình ngay từ hôm nay.",
+            "Đôi tay là tấm gương phản chiếu tâm hồn và gu thẩm mỹ đỉnh cao.",
+            "Chúng tôi không chỉ làm nail, chúng tôi kiến tạo nên những tác phẩm nghệ thuật.",
+            "Nâng niu giá trị bản thân bắt đầu từ việc chăm chút cho đôi bàn tay.",
+            "Sự tinh tế của quý khách xứng đáng với những dịch vụ thượng hạng nhất.",
+            "Hana Nails - Nơi vẻ đẹp được định nghĩa lại bởi sự hoàn mỹ.",
+            "Hãy để mỗi ngón tay kể một câu chuyện về phong cách sống của bạn.",
+            "Quý khách là khách hàng đặc biệt, và xứng đáng với những trải nghiệm tuyệt vời.",
+            "Chúng tôi trân trọng từng khoảnh khắc quý khách tin tưởng gửi gắm niềm tin.",
+            "Đẹp một cách khác biệt - Đó là lời cam kết của Hana Nails dành cho bạn.",
+            "Tự tin sải bước với bộ móng hoàn hảo chỉ dành riêng cho chủ nhân xứng tầm."
         ];
 
         const container = document.getElementById('main-content');
-        const track = document.getElementById('marquee-track');
         
         for(let i=1; i<=45; i++) {
+            let code = "MS" + i.toString().padStart(2, '0');
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
             
             let imgName = `IMG${i.toString().padStart(2, '0')}.jpg`;
-            document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `<div class="product-card"><img src="${imgName}" class="product-img"><a href="https://m.me/100088924357778" class="btn-buy">Đặt Hàng Ngay</a></div>`;
-            track.innerHTML += `<div class="marquee-item"><img src="${imgName}"></div>`;
+            document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
+                <div class="product-card">
+                    <div class="code-label">${code}</div>
+                    <img src="${imgName}" class="product-img" onclick="showZoom('${imgName}')">
+                    <a href="https://m.me/100088924357778?text=Tôi muốn đặt mẫu ${code}" class="btn-buy">Đặt Mẫu ${code}</a>
+                </div>`;
             
             if (i % 2 === 0 && (i/2 - 1) < msgs.length) {
-                container.innerHTML += `<div class="ads-section"><div>${msgs[i/2 - 1]}</div><a href="https://m.me/100088924357778" class="btn-buy" style="width:220px; margin:20px auto;">Đặt Lịch Làm Đẹp</a></div>`;
+                container.innerHTML += `<div class="ads-section">${msgs[i/2 - 1]}</div>`;
             }
         }
-        track.innerHTML += track.innerHTML;
+
+        function showZoom(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
 
         function setLang(lang) {
-            const data = (lang === 'vi') ? { w: "Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn, nhiều niềm vui và nhiều hạnh phúc.", a: msgs, b: "Đặt Hàng Ngay" } : { w: "Thank you, wishing you a day full of luck, joy, and happiness.", a: ["Your beauty is our endless inspiration.", "Let Hana Nails honor your noble style.", "Class is in your hands, style is in your choice.", "Our mission is to highlight the uniqueness in every customer.", "Every design is a special gift for your beauty.", "Assert your leading style with our masterpieces.", "Your satisfaction is the measure of our art.", "Become the most radiant version of yourself today."], b: "Order Now" };
+            const data = (lang === 'vi') ? { w: "Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.", b: "Đặt Mẫu" } : { w: "Thank you for visiting, have a wonderful day.", b: "Order Model" };
             document.getElementById('welcome-msg').textContent = data.w;
-            document.querySelectorAll('.btn-buy').forEach(el => el.textContent = data.b);
+            document.querySelectorAll('.btn-buy').forEach((el, index) => {
+                let code = (index + 1).toString().padStart(2, '0');
+                el.textContent = data.b + " MS" + code;
+            });
         }
     </script>
 </body>
