@@ -6,44 +6,36 @@
     <title>Haute Nails Couture - Premium Press-On Nails</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
-
-        :root {
-            --accent-gold: #d4af37;
-            --bg-dark: #0d0d0d;
-            --surface-dark: #161616;
-            --text-light: #ffffff;
-            --text-muted: #b3b3b3;
-        }
-
+        :root { --accent-gold: #d4af37; --bg-dark: #0d0d0d; --surface-dark: #161616; --text-light: #ffffff; --text-muted: #b3b3b3; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-dark); color: var(--text-light); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         /* HEADER */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(13, 13, 13, 0.95); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
         .brand-logo { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); text-transform: uppercase; }
-        .nav-right { display: flex; align-items: center; gap: 20px; }
-        .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 30px; font-size: 13px; text-decoration: none; color: #fff; text-transform: uppercase; font-weight: 600; }
-        .zalo { background-color: #0068ff; }
-        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #bc1888); }
-        
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .btn-action { padding: 8px 16px; border-radius: 20px; font-size: 12px; text-decoration: none; color: #fff; font-weight: 600; text-transform: uppercase; }
+        .btn-zalo { background-color: #0068ff; }
+        .btn-mess { background-color: #0084ff; }
         .lang-toggle { display: flex; border: 1px solid #333; border-radius: 4px; overflow: hidden; }
-        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 12px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 5px 10px; font-size: 11px; cursor: pointer; }
         .lang-btn.active { background-color: var(--accent-gold); color: #000; }
 
         /* MARQUEE */
-        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; position: relative; }
-        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 80s linear infinite; }
-        .marquee-item { min-width: 280px; background: var(--surface-dark); border-radius: 12px; border: 1px solid #222; overflow: hidden; }
-        .marquee-item img { width: 100%; height: 300px; object-fit: cover; }
-        .marquee-text { padding: 15px; font-size: 12px; text-align: center; color: var(--text-muted); }
+        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 200s linear infinite; }
+        .marquee-item { min-width: 200px; background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; }
+        .marquee-item img { width: 100%; height: 200px; object-fit: cover; }
+        .marquee-text { padding: 8px; font-size: 10px; text-align: center; }
 
         /* LƯỚI SẢN PHẨM */
         .store-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: var(--surface-dark); border-radius: 10px; overflow: hidden; border: 1px solid #222; }
-        .product-card img { width: 100%; height: 350px; object-fit: cover; }
-        .product-info { padding: 20px; text-align: center; }
-        .cart-action-btn { display: block; margin-top: 15px; padding: 12px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 13px; text-transform: uppercase; font-weight: 700; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .product-card { background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; }
+        .product-card img { width: 100%; height: 280px; object-fit: cover; }
+        .product-info { padding: 15px; text-align: center; }
+        .btn-buy { display: block; margin: 10px 0; padding: 10px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
+        .btn-call { color: #fff; text-decoration: underline; font-size: 11px; }
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
@@ -53,18 +45,14 @@
     <header>
         <div class="brand-logo">Haute Couture</div>
         <div class="nav-right">
-            <a href="#" id="header-social-btn" class="contact-link zalo" target="_blank"><span id="header-social-text">Zalo Đặt Hàng</span></a>
+            <a href="https://zalo.me/YOUR_PHONE" class="btn-action btn-zalo" id="txt-zalo">Zalo</a>
+            <a href="https://m.me/YOUR_PAGE" class="btn-action btn-mess" id="txt-mess">Messenger</a>
             <div class="lang-toggle">
-                <button class="lang-btn active" id="btn-vi" onclick="toggleLanguage('vi')">VI</button>
-                <button class="lang-btn" id="btn-en" onclick="toggleLanguage('en')">EN</button>
+                <button class="lang-btn active" onclick="setLang('vi')" id="btn-vi">VI</button>
+                <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
             </div>
         </div>
     </header>
-
-    <section style="text-align:center; padding: 60px 20px;">
-        <h1 id="main-hero-title" style="color:#fff;">Đừng chỉ diện trang phục, hãy kiêu sa đến từng đầu ngón tay</h1>
-        <p id="main-hero-desc" style="color:var(--text-muted); font-style:italic;">Mỗi bộ Press-on Nails là một câu chuyện nghệ thuật riêng biệt.</p>
-    </section>
 
     <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
 
@@ -73,85 +61,40 @@
     </section>
 
     <script>
-        const ACCOUNT_ZALO = "https://zalo.me/YOUR_ZALO_PHONE";
-        const ACCOUNT_INSTAGRAM = "https://instagram.com/YOUR_INSTAGRAM_USER";
-
-        // Anh thêm hình tại đây, tối đa 20 hình cho dòng chạy
-        const marqueeData = [
-            { img: "IMG01.jpg", vi: "Mẫu 01", en: "Design 01" }, { img: "IMG02.jpg", vi: "Mẫu 02", en: "Design 02" },
-            { img: "IMG03.jpg", vi: "Mẫu 03", en: "Design 03" }, { img: "IMG04.jpg", vi: "Mẫu 04", en: "Design 04" },
-            { img: "IMG05.jpg", vi: "Mẫu 05", en: "Design 05" }, { img: "IMG06.jpg", vi: "Mẫu 06", en: "Design 06" },
-            { img: "IMG07.jpg", vi: "Mẫu 07", en: "Design 07" }, { img: "IMG08.jpg", vi: "Mẫu 08", en: "Design 08" },
-            { img: "IMG09.jpg", vi: "Mẫu 09", en: "Design 09" }, { img: "IMG10.jpg", vi: "Mẫu 10", en: "Design 10" },
-            { img: "IMG11.jpg", vi: "Mẫu 11", en: "Design 11" }, { img: "IMG12.jpg", vi: "Mẫu 12", en: "Design 12" },
-            { img: "IMG13.jpg", vi: "Mẫu 13", en: "Design 13" }, { img: "IMG14.jpg", vi: "Mẫu 14", en: "Design 14" },
-            { img: "IMG15.jpg", vi: "Mẫu 15", en: "Design 15" }, { img: "IMG16.jpg", vi: "Mẫu 16", en: "Design 16" },
-            { img: "IMG17.jpg", vi: "Mẫu 17", en: "Design 17" }, { img: "IMG18.jpg", vi: "Mẫu 18", en: "Design 18" },
-            { img: "IMG19.jpg", vi: "Mẫu 19", en: "Design 19" }, { img: "IMG20.jpg", vi: "Mẫu 20", en: "Design 20" },
-            { img: "IMG21.jpg", vi: "Mẫu 21", en: "Design 21" }, { img: "IMG22.jpg", vi: "Mẫu 22", en: "Design 22" },
-            { img: "IMG23.jpg", vi: "Mẫu 23", en: "Design 23" }, { img: "IMG24.jpg", vi: "Mẫu 24", en: "Design 24" },
-            { img: "IMG25.jpg", vi: "Mẫu 25", en: "Design 25" }, { img: "IMG26.jpg", vi: "Mẫu 26", en: "Design 26" },
-            { img: "IMG27.jpg", vi: "Mẫu 27", en: "Design 27" }, { img: "IMG28.jpg", vi: "Mẫu 28", en: "Design 28" },
-            { img: "IMG29.jpg", vi: "Mẫu 29", en: "Design 29" }, { img: "IMG30.jpg", vi: "Mẫu 30", en: "Design 30" },
-            { img: "IMG31.jpg", vi: "Mẫu 31", en: "Design 31" }, { img: "IMG32.jpg", vi: "Mẫu 32", en: "Design 32" },
-            { img: "IMG33.jpg", vi: "Mẫu 33", en: "Design 33" }, { img: "IMG34.jpg", vi: "Mẫu 34", en: "Design 34" },
-            { img: "IMG35.jpg", vi: "Mẫu 35", en: "Design 35" }, { img: "IMG36.jpg", vi: "Mẫu 36", en: "Design 36" },
-            { img: "IMG37.jpg", vi: "Mẫu 37", en: "Design 37" }, { img: "IMG38.jpg", vi: "Mẫu 38", en: "Design 38" },
-            { img: "IMG39.jpg", vi: "Mẫu 39", en: "Design 39" }, { img: "IMG40.jpg", vi: "Mẫu 40", en: "Design 40" },
-            { img: "IMG41.jpg", vi: "Mẫu 41", en: "Design 41" }, { img: "IMG42.jpg", vi: "Mẫu 42", en: "Design 42" },
-            { img: "IMG43.jpg", vi: "Mẫu 43", en: "Design 43" }, { img: "IMG44.jpg", vi: "Mẫu 44", en: "Design 44" },
-            { img: "IMG45.jpg", vi: "Mẫu 45", en: "Design 45" }
-            { img: "IMG01.jpg", vi: "Nét kiêu kỳ Á Đông", en: "Asian Elegance" },
-            { img: "IMG02.jpg", vi: "Trẻ trung cá tính", en: "Youthful Vibe" },
-            { img: "IMG03.jpg", vi: "Nghệ thuật đại dương", en: "Ocean Art" },
-            { img: "IMG04.jpg", vi: "Sắc tím mộng mơ", en: "Dreamy Violet" },
-            { img: "IMG05.jpg", vi: "Espresso nồng nàn", en: "Rich Espresso" },
-            { img: "IMG06.jpg", vi: "Sự ngọt ngào tinh tế", en: "Pure Sweetness" },
-            { img: "IMG07.jpg", vi: "Chrome tương lai", en: "Future Chrome" },
-            { img: "IMG08.jpg", vi: "Thiết kế độc bản", en: "Unique Design" },
-            { img: "IMG09.jpg", vi: "Đỉnh cao Press-on", en: "Premium Press-on" },
-            { img: "IMG10.jpg", vi: "Sang chảnh tuyệt đối", en: "Luxury Style" }
-            // Anh có thể copy thêm dòng và đổi tên file vào đây...
-        ];
+        const marqueeData = Array.from({ length: 45 }, (_, i) => ({
+            img: `IMG${(i + 1).toString().padStart(2, '0')}.jpg`,
+            vi: `Mẫu ${i + 1}`, en: `Design ${i + 1}`
+        }));
 
         function init() {
             const track = document.getElementById('marquee-track');
             track.innerHTML = [...marqueeData, ...marqueeData].map(item => `
-                <div class="marquee-item">
-                    <img src="${item.img}" alt="Nails">
-                    <div class="marquee-text">${item.vi}</div>
-                </div>
+                <div class="marquee-item"><img src="${item.img}" alt="Nails"><div class="marquee-text">${item.vi}</div></div>
             `).join('');
 
             const grid = document.getElementById('product-grid');
-            grid.innerHTML = marqueeData.slice(0, 8).map(item => `
+            grid.innerHTML = marqueeData.map(item => `
                 <div class="product-card">
                     <img src="${item.img}" alt="Product">
                     <div class="product-info">
-                        <h3>Nails Couture</h3>
-                        <a href="${ACCOUNT_ZALO}" class="cart-action-btn dynamic-cart">Đặt Hàng Ngay</a>
+                        <h3 style="margin-bottom:10px">Nails Couture</h3>
+                        <a href="https://zalo.me/YOUR_PHONE" class="btn-buy dynamic-text">Đặt Hàng Ngay</a>
+                        <a href="tel:0909000000" class="btn-call dynamic-call">Gọi Tư Vấn</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        function toggleLanguage(lang) {
+        function setLang(lang) {
             document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            
-            const isVi = (lang === 'vi');
-            document.getElementById('header-social-btn').className = isVi ? "contact-link zalo" : "contact-link instagram";
-            document.getElementById('header-social-text').textContent = isVi ? "Zalo Đặt Hàng" : "Instagram Shop";
-            document.getElementById('header-social-btn').href = isVi ? ACCOUNT_ZALO : ACCOUNT_INSTAGRAM;
-            
-            document.querySelectorAll('.dynamic-cart').forEach(btn => {
-                btn.textContent = isVi ? "Đặt Hàng Ngay" : "Order Now";
-                btn.href = isVi ? ACCOUNT_ZALO : ACCOUNT_INSTAGRAM;
-            });
+            document.getElementById('txt-zalo').textContent = lang === 'vi' ? 'Zalo' : 'Zalo';
+            document.getElementById('txt-mess').textContent = lang === 'vi' ? 'Messenger' : 'Messenger';
+            document.querySelectorAll('.dynamic-text').forEach(el => el.textContent = lang === 'vi' ? 'Đặt Hàng Ngay' : 'Order Now');
+            document.querySelectorAll('.dynamic-call').forEach(el => el.textContent = lang === 'vi' ? 'Gọi Tư Vấn' : 'Call Support');
         }
 
-        document.addEventListener('DOMContentLoaded', () => { init(); toggleLanguage('vi'); });
+        init();
     </script>
 </body>
 </html>
-                          
