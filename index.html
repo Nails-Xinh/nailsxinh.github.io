@@ -9,37 +9,42 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
-        .nav-group { display: flex; align-items: center; gap: 10px; }
         
-        /* Tìm kiếm */
-        .search-box { display: flex; align-items: center; background: #fff; padding: 2px 5px; border-radius: 4px; }
-        .search-box input { border: none; outline: none; padding: 5px; }
-        .search-box button { background: none; border: none; cursor: pointer; color: #1a0b2e; font-weight: bold; }
+        /* Thanh tìm kiếm */
+        .search-container { display: flex; background: #fff; border-radius: 5px; overflow: hidden; height: 35px; }
+        .search-container input { border: none; padding: 0 10px; width: 100px; outline: none; }
+        .search-container button { background: var(--gold); border: none; padding: 0 15px; cursor: pointer; font-weight: bold; }
 
+        .nav-group { display: flex; align-items: center; gap: 8px; }
         .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
-        .hotline-bar { font-size: 13px; color: var(--gold); font-weight: bold; text-decoration: none; border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px; }
+        .action-link { font-size: 11px; color: #fff; text-decoration: none; background: #332050; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--gold); }
 
         .ads-section { text-align: center; padding: 40px 5%; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-style: italic; }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
-        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; transition: transform 0.3s; }
+        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
-        .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; }
+        .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
         .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
 
-        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
         #lightbox img { max-width: 90%; max-height: 90%; }
-        .map-section { text-align: center; padding: 40px; background: #0e061a; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Hana Nails</div>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Nhập MS...">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+
         <div class="nav-group">
-            <div class="search-box"><input type="text" id="search" placeholder="Nhập MS..."> <button onclick="searchProduct()">🔍</button></div>
-            <a href="tel:0937244764" class="hotline-bar">0937 244 764</a>
+            <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
+            <a href="https://maps.app.goo.gl/aBvmAQfMeuD5JrMMA" target="_blank" class="action-link">📍 Bản đồ</a>
             <button class="nav-btn" onclick="setLang('vi')">VI</button>
             <button class="nav-btn" onclick="setLang('en')">EN</button>
         </div>
@@ -48,11 +53,6 @@
     <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
     <div class="ads-section" id="welcome-msg">Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.</div>
     <section id="main-content"></section>
-
-    <div class="map-section">
-        <h2 style="color:var(--gold)">Vị trí của chúng tôi</h2>
-        <a href="ĐƯỜNG_LINK_GOOGLE_MAPS_CỦA_ANH_VÀO_ĐÂY" target="_blank" style="color:#fff; text-decoration:underline;">Nhấn vào đây để xem bản đồ tiệm</a>
-    </div>
 
     <script>
         const msgs = [
@@ -108,9 +108,11 @@
 
         function searchProduct() {
             let val = document.getElementById('search').value.toUpperCase();
+            // Đảm bảo định dạng MS01 thay vì chỉ MS1
+            if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
-            else alert("Không tìm thấy mã số này!");
+            else alert("Vui lòng nhập đúng mã (Ví dụ: MS01)");
         }
 
         function setLang(lang) {
