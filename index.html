@@ -12,19 +12,18 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #4a148c; }
         .brand-logo { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); font-style: italic; }
 
-        /* LỜI CHÀO NGHỆ THUẬT (XOAY VÒNG) */
-        .welcome-section { text-align: center; padding: 60px 20px; min-height: 150px; }
-        .welcome-text { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); }
+        /* PHẦN CÁC ĐOẠN VĂN GỢI Ý */
+        .msg-section { text-align: center; padding: 40px 20px; font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-style: italic; }
 
         .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #120822; }
-        .marquee-track { display: flex; gap: 25px; animation: scrollMarquee 90s linear infinite; }
+        .marquee-track { display: flex; gap: 25px; animation: scrollMarquee 45s linear infinite; }
         .marquee-item { min-width: 220px; background: var(--surface-purple); border-radius: 12px; border: 1px solid #4a148c; }
         .marquee-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px 12px 0 0; }
 
         .store-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 30px; }
         .product-card { background: var(--surface-purple); border-radius: 15px; padding: 15px; border: 1px solid #4a148c; }
-        .btn-buy { display: block; margin-top: 15px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+        .btn-buy { display: block; margin-top: 15px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 12px; text-transform: uppercase; transition: 0.3s; }
         
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
@@ -35,45 +34,50 @@
         <div class="brand-logo">Haute Nails</div>
         <div style="display: flex; gap: 10px;">
             <a href="https://zalo.me/0937244764" class="btn-buy" style="background:#0068ff; color:#fff; margin:0;">Zalo</a>
+            <a href="https://m.me/100088924357778" class="btn-buy" style="background:#0084ff; color:#fff; margin:0;">Mess</a>
+            <a href="https://www.instagram.com/hana26096" class="btn-buy" style="background:linear-gradient(45deg, #f09433, #dc2743); color:#fff; margin:0;">Insta</a>
+            <button onclick="setLang('vi')" style="background:var(--gold); border:none; padding:5px; cursor:pointer;">VI</button>
+            <button onclick="setLang('en')" style="background:transparent; border:1px solid #fff; color:#fff; padding:5px; cursor:pointer;">EN</button>
         </div>
     </header>
 
-    <div class="welcome-section">
-        <h2 class="welcome-text" id="welcome-msg"></h2>
-    </div>
+    <div class="msg-section" id="msg1">Đánh thức vẻ đẹp tiềm ẩn của đôi bàn tay. Hãy để chúng tôi chăm sóc bạn ngay hôm nay!</div>
 
     <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
+    
+    <div class="msg-section" id="msg2">Bạn đang tìm kiếm một bộ nail nghệ thuật? Nhấn 'Đặt hàng' để nhận tư vấn thiết kế độc bản dành riêng cho bạn.</div>
+
     <section class="store-section"><div class="product-grid" id="product-grid"></div></section>
 
-    <!-- Facebook Chat Plugin -->
-    <div id="fb-root"></div>
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
+    <div class="msg-section" id="msg3">Nâng tầm phong cách với những thiết kế nail thời thượng. Liên hệ với chúng tôi để được tư vấn miễn phí!</div>
+
     <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "100088924357778"); // ID Page của anh
-        chatbox.setAttribute("attribution", "biz_inbox");
-        window.fbAsyncInit = function() { FB.init({ xfbml: true, version: 'v12.0' }); };
-        (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
-
-        // Lời chào xoay vòng
-        const msgs = [
-            "Đánh thức vẻ đẹp tiềm ẩn của đôi bàn tay. Hãy để chúng tôi chăm sóc bạn ngay hôm nay!",
-            "Bạn đang tìm kiếm một bộ nail nghệ thuật? Nhấn 'Đặt hàng' để nhận tư vấn thiết kế độc bản dành riêng cho bạn.",
-            "Nâng tầm phong cách với những thiết kế nail thời thượng. Liên hệ với chúng tôi để được tư vấn miễn phí!"
-        ];
-        document.getElementById('welcome-msg').textContent = msgs[Math.floor(Math.random() * msgs.length)];
-
-        // Tạo dữ liệu sản phẩm
         const grid = document.getElementById('product-grid');
         const track = document.getElementById('marquee-track');
+        
         for(let i=1; i<=45; i++) {
-            let itemHTML = `
+            grid.innerHTML += `
                 <div class="product-card">
                     <img src="IMG${i.toString().padStart(2, '0')}.jpg" style="width:100%; height:260px; object-fit:cover; border-radius:10px;">
                     <a href="https://m.me/100088924357778" class="btn-buy">Đặt Hàng Ngay</a>
                 </div>`;
-            grid.innerHTML += itemHTML;
             track.innerHTML += `<div class="marquee-item"><img src="IMG${i.toString().padStart(2, '0')}.jpg"><div style="padding:10px; text-align:center; font-size:12px;">Mẫu ${i}</div></div>`;
+        }
+
+        function setLang(lang) {
+            const msgs = (lang === 'vi') ? [
+                "Đánh thức vẻ đẹp tiềm ẩn của đôi bàn tay. Hãy để chúng tôi chăm sóc bạn ngay hôm nay!",
+                "Bạn đang tìm kiếm một bộ nail nghệ thuật? Nhấn 'Đặt hàng' để nhận tư vấn thiết kế độc bản dành riêng cho bạn.",
+                "Nâng tầm phong cách với những thiết kế nail thời thượng. Liên hệ với chúng tôi để được tư vấn miễn phí!"
+            ] : [
+                "Awaken the hidden beauty of your hands. Let us take care of you today!",
+                "Looking for artistic nail designs? Click 'Order' for a unique custom consultation.",
+                "Elevate your style with trendy nail designs. Contact us for a free consultation!"
+            ];
+            document.getElementById('msg1').textContent = msgs[0];
+            document.getElementById('msg2').textContent = msgs[1];
+            document.getElementById('msg3').textContent = msgs[2];
+            document.querySelectorAll('.btn-buy').forEach(el => el.textContent = (lang === 'vi') ? 'Đặt Hàng Ngay' : 'Order Now');
         }
     </script>
 </body>
