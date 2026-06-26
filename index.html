@@ -9,17 +9,18 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --surface-purple: #2d164d; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        /* HEADER & LOGO CÁCH ĐIỆU */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #1a0b2e; border-bottom: 1px solid #332050; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--gold); letter-spacing: 1px; padding: 8px 20px; border: 1px solid var(--gold); border-radius: 4px; display: inline-block; cursor: pointer; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
 
-        /* LỜI CHÀO */
-        .msg-section { text-align: center; padding: 50px 20px; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-style: italic; }
+        /* LỜI QUẢNG CÁO GÂY CHÚ Ý */
+        .ads-section { text-align: center; padding: 60px 10%; line-height: 1.6; }
+        .ads-text { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--gold); font-style: italic; margin-bottom: 10px; }
+        .ads-sub { font-size: 14px; color: #b39ddb; letter-spacing: 1px; }
 
-        /* DẢI ẢNH CHẠY (TỐI ƯU HÓA TỐC ĐỘ) */
+        /* TỐC ĐỘ DẢI ẢNH VỪA PHẢI (60 GIÂY) */
         .marquee-container { width: 100%; overflow: hidden; background: #0e061a; padding: 20px 0; }
-        .marquee-track { display: flex; gap: 15px; animation: scrollMarquee 25s linear infinite; width: max-content; }
-        .marquee-item { width: 180px; height: 180px; border: 1px solid #4a148c; border-radius: 8px; overflow: hidden; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 60s linear infinite; width: max-content; }
+        .marquee-item { width: 200px; height: 200px; border-radius: 8px; overflow: hidden; border: 1px solid #4a148c; }
         .marquee-item img { width: 100%; height: 100%; object-fit: cover; }
 
         .store-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
@@ -37,19 +38,30 @@
         <div style="display: flex; gap: 10px;">
             <a href="https://zalo.me/0937244764" class="btn-buy" style="background:#0068ff; color:#fff; margin:0;">Zalo</a>
             <a href="https://m.me/100088924357778" class="btn-buy" style="background:#0084ff; color:#fff; margin:0;">Mess</a>
-            <a href="https://www.instagram.com/hana26096" class="btn-buy" style="background:linear-gradient(45deg, #f09433, #dc2743); color:#fff; margin:0;">Insta</a>
         </div>
     </header>
 
-    <div class="msg-section">Đánh thức vẻ đẹp tiềm ẩn của đôi bàn tay. Hãy để chúng tôi chăm sóc bạn ngay hôm nay!</div>
+    <!-- Đoạn 1 -->
+    <section class="ads-section">
+        <div class="ads-text">Đừng chỉ làm móng, hãy tạo nên tuyên ngôn của riêng bạn.</div>
+        <div class="ads-sub">Mỗi thiết kế tại Hana Nails là sự kết hợp giữa kỹ thuật thủ công tinh xảo và cảm xúc nghệ thuật.</div>
+    </section>
     
     <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
     
-    <div class="msg-section">Bạn đang tìm kiếm một bộ nail nghệ thuật? Nhấn 'Đặt hàng' để nhận tư vấn thiết kế độc bản dành riêng cho bạn.</div>
+    <!-- Đoạn 2 -->
+    <section class="ads-section">
+        <div class="ads-text">Vẻ đẹp không nằm ở sự cầu kỳ, nó nằm ở sự tinh tế trong từng đường nét.</div>
+        <div class="ads-sub">Chúng tôi tỉ mỉ trong từng khâu xử lý để đôi bàn tay bạn luôn tỏa sáng dù ở bất cứ đâu.</div>
+    </section>
     
     <section class="store-section"><div class="product-grid" id="product-grid"></div></section>
 
-    <div class="msg-section">Nâng tầm phong cách với những thiết kế nail thời thượng. Liên hệ với chúng tôi để được tư vấn miễn phí!</div>
+    <!-- Đoạn 3 -->
+    <section class="ads-section">
+        <div class="ads-text">Hãy để chúng tôi lắng nghe câu chuyện của bạn qua từng thiết kế nail.</div>
+        <div class="ads-sub">Nhấn đặt hàng ngay để cùng chúng tôi tạo nên phiên bản hoàn hảo nhất của chính mình.</div>
+    </section>
 
     <script>
         const grid = document.getElementById('product-grid');
@@ -59,8 +71,7 @@
             grid.innerHTML += `<div class="product-card"><img src="${imgName}" style="width:100%; height:200px; object-fit:cover; border-radius:4px;"><a href="https://m.me/100088924357778" class="btn-buy">Đặt Hàng Ngay</a></div>`;
             track.innerHTML += `<div class="marquee-item"><img src="${imgName}"></div>`;
         }
-        // Nhân đôi để dải ảnh chạy mượt không bị khựng
-        track.innerHTML += track.innerHTML; 
+        track.innerHTML += track.innerHTML; // Nhân đôi để chạy mượt
     </script>
 </body>
 </html>
