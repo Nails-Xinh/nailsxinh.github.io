@@ -4,374 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haute Nails Couture - Premium Press-On Nails</title>
-    <!-- Nhúng phông chữ cao cấp từ Google Fonts để tạo sự sang trọng -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
 
         :root {
-            --accent-gold: #d4af37;      /* Vàng kim sang trọng */
-            --rose-gold: #c5a059;        /* Vàng hồng hoàng gia */
-            --bg-dark: #0d0d0d;          /* Đen nhám sâu thẳm */
-            --surface-dark: #161616;     /* Đen nâng nền */
+            --accent-gold: #d4af37;
+            --bg-dark: #0d0d0d;
+            --surface-dark: #161616;
             --text-light: #ffffff;
             --text-muted: #b3b3b3;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-light); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        /* HEADER */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(13, 13, 13, 0.95); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .brand-logo { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); text-transform: uppercase; }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 30px; font-size: 13px; text-decoration: none; color: #fff; text-transform: uppercase; font-weight: 600; }
+        .zalo { background-color: #0068ff; }
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #bc1888); }
+        
+        .lang-toggle { display: flex; border: 1px solid #333; border-radius: 4px; overflow: hidden; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 12px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .lang-btn.active { background-color: var(--accent-gold); color: #000; }
 
-        h1, h2, h3, .brand-logo {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
-        }
+        /* MARQUEE */
+        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; position: relative; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 80s linear infinite; }
+        .marquee-item { min-width: 280px; background: var(--surface-dark); border-radius: 12px; border: 1px solid #222; overflow: hidden; }
+        .marquee-item img { width: 100%; height: 300px; object-fit: cover; }
+        .marquee-text { padding: 15px; font-size: 12px; text-align: center; color: var(--text-muted); }
 
-        /* --- HEADER CAO CẤP --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background-color: rgba(13, 13, 13, 0.95);
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
+        /* LƯỚI SẢN PHẨM */
+        .store-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--surface-dark); border-radius: 10px; overflow: hidden; border: 1px solid #222; }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; }
+        .product-info { padding: 20px; text-align: center; }
+        .cart-action-btn { display: block; margin-top: 15px; padding: 12px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 13px; text-transform: uppercase; font-weight: 700; }
 
-        .brand-logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        /* Nút liên kết động theo ngôn ngữ đặt cạnh nút chuyển đổi */
-        .dynamic-contact-slot {
-            min-width: 180px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-decoration: none;
-            border-radius: 30px;
-            transition: all 0.4s ease;
-        }
-
-        .contact-link.zalo {
-            background-color: #0068ff;
-            color: #fff;
-            border: 1px solid #0068ff;
-        }
-
-        .contact-link.instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: #fff;
-            border: none;
-        }
-
-        .contact-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Nút đổi ngôn ngữ tinh tế */
-        .lang-toggle {
-            display: flex;
-            border: 1px solid #333;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background-color: var(--accent-gold);
-            color: #000;
-        }
-
-        /* --- HERO BANNER CẢM XÚC --- */
-        .hero-section {
-            text-align: center;
-            padding: 80px 20px 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-section h1 {
-            font-size: 2.8rem;
-            color: #fff;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .hero-section p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            font-style: italic;
-        }
-
-        /* --- ĐƯỜNG CHẠY QUẢNG CÁO CHẬM (INFINITE MARQUEE SLIDER) --- */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            padding: 40px 0;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--surface-dark) 50%, var(--bg-dark) 100%);
-            position: relative;
-        }
-
-        .marquee-container::before, .marquee-container::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 150px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg-dark), transparent); }
-        .marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg-dark), transparent); }
-
-        .marquee-track {
-            display: flex;
-            width: calc(320px * 14); /* Chứa 2 lượt của 7 ảnh để lặp vô tận mượt mà */
-            animation: scrollMarquee 45s linear infinite; /* Chạy rất chậm rãi, tinh tế */
-        }
-
-        /* Tự động dừng lại khi khách hàng rà chuột vào xem kỹ */
-        .marquee-track:hover {
-            animation-play-state: paused;
-        }
-
-        .marquee-item {
-            width: 300px;
-            margin: 0 10px;
-            background-color: #1c1c1c;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: border-color 0.3s ease;
-        }
-
-        .marquee-item:hover {
-            border-color: var(--accent-gold);
-        }
-
-        .marquee-img-box {
-            width: 100%;
-            height: 320px;
-            overflow: hidden;
-        }
-
-        .marquee-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .marquee-item:hover .marquee-img-box img {
-            transform: scale(1.06);
-        }
-
-        .marquee-text-box {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .marquee-text-box p {
-            font-size: 13px;
-            font-weight: 400;
-            color: #e0e0e0;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- KHU VỰC CỬA HÀNG & GIỎ HÀNG CHỌN --- */
-        .store-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--accent-gold);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-gold);
-            margin: 15px auto 0 auto;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
-            background-color: var(--surface-dark);
-            border-radius: 8px;
-            border: 1px solid #1f1f1f;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--rose-gold);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-        }
-
-        .product-img-holder {
-            width: 100%;
-            height: 380px;
-            overflow: hidden;
-            background-color: #222;
-        }
-
-        .product-img-holder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-details {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .product-details h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .product-details .slogan {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-style: italic;
-            min-height: 38px;
-        }
-
-        /* Nút Thêm vào giỏ hàng mô phỏng cao cấp kích thích click */
-        .cart-action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 14px;
-            background-color: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .cart-action-btn:hover {
-            background-color: var(--accent-gold);
-            color: #000;
-        }
-
-        .cart-action-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid #1a1a1a;
-            color: #555;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* Hiệu ứng chạy mượt từ phải sang trái cho dải quảng cáo */
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-320px * 7)); }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2rem; }
-            header { padding: 15px 4%; }
-            .brand-logo { font-size: 18px; }
-        }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body>
 
-    <!-- --- THANH ĐIỀU HƯỚNG --- -->
     <header>
         <div class="brand-logo">Haute Couture</div>
-        
         <div class="nav-right">
-            <!-- Vị trí đặt liên kết mạng xã hội thông minh kế bên nút ngôn ngữ -->
-            <div class="dynamic-contact-slot">
-                <a href="#" id="header-social-btn" class="contact-link zalo" target="_blank">
-                    <span id="header-social-text">Zalo Đặt Hàng</span>
-                </a>
-            </div>
-
-            <!-- Nút chọn ngôn ngữ -->
+            <a href="#" id="header-social-btn" class="contact-link zalo" target="_blank"><span id="header-social-text">Zalo Đặt Hàng</span></a>
             <div class="lang-toggle">
                 <button class="lang-btn active" id="btn-vi" onclick="toggleLanguage('vi')">VI</button>
                 <button class="lang-btn" id="btn-en" onclick="toggleLanguage('en')">EN</button>
@@ -379,212 +61,74 @@
         </div>
     </header>
 
-    <!-- --- LỜI MỞ ĐẦU CHẠM ĐẾN CẢM XÚC --- -->
-    <section class="hero-section">
-        <h1 id="main-hero-title" data-vi="Đừng chỉ diện trang phục, hãy kiêu sa đến từng đầu ngón tay" data-en="Don't just wear fashion, be exquisite to your fingertips">Đừng chỉ diện trang phục, hãy kiêu sa đến từng đầu ngón tay</h1>
-        <p id="main-hero-desc" data-vi=" mỗi bộ Press-on Nails là một câu chuyện nghệ thuật riêng biệt, được thiết kế để đánh thức sự tự tin ẩn giấu bên trong bạn." data-en="Every Press-on Nails set is a unique masterpiece, tailored to awaken the silent confidence within you.">Mỗi bộ Press-on Nails là một câu chuyện nghệ thuật riêng biệt, được thiết kế để đánh thức sự tự tin ẩn giấu bên trong bạn.</p>
+    <section style="text-align:center; padding: 60px 20px;">
+        <h1 id="main-hero-title" style="color:#fff;">Đừng chỉ diện trang phục, hãy kiêu sa đến từng đầu ngón tay</h1>
+        <p id="main-hero-desc" style="color:var(--text-muted); font-style:italic;">Mỗi bộ Press-on Nails là một câu chuyện nghệ thuật riêng biệt.</p>
     </section>
 
-    <!-- --- ĐƯỜNG CHẠY QUẢNG CÁO CHẬM (MARQUEE) --- -->
-    <div class="marquee-container">
-        <div class="marquee-track" id="marquee-track">
-            <!-- Nội dung sẽ được tạo tự động bằng Javascript phía dưới để đảm bảo lặp vô tận hoàn hảo -->
-        </div>
-    </div>
+    <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
 
-    <!-- --- KHU VỰC CHỌN SẢN PHẨM & GIỎ HÀNG --- -->
     <section class="store-section">
-        <h2 class="section-title" id="store-title" data-vi="Tuyệt Tác Sưu Tập" data-en="The Masterpiece Gallery">Tuyệt Tác Sưu Tập</h2>
-        
-        <div class="product-grid">
-
-            <!-- Bộ 1 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG36.png" alt="Set 1"></div>
-                <div class="product-details">
-                    <h3 data-vi="Tráng Gương Metallic Hồng Cổ Điển" data-en="Classic Pink Metallic Chrome">Tráng Gương Metallic Hồng Cổ Điển</h3>
-                    <p class="slogan" data-vi="&ldquo;Kiêu sa trong từng đường nét cắt mảnh, tỏa sáng nét kiêu kỳ phụ nữ.&rdquo;" data-en="&ldquo;Gleaming contours crafted for the bold, independent soul.&rdquo;">&ldquo;Kiêu sa trong từng đường nét cắt mảnh, tỏa sáng nét kiêu kỳ phụ nữ.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 2 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG37.jpg" alt="Set 2"></div>
-                <div class="product-details">
-                    <h3 data-vi="Ký Ức Tuổi Thơ Hồn Nhiên" data-en="Youthful Childhood Vibe">Ký Ức Tuổi Thơ Hồn Nhiên</h3>
-                    <p class="slogan" data-vi="&ldquo;Đánh thức sự hồn nhiên thuần khiết, lưu giữ trọn vẹn nét trẻ trung.&rdquo;" data-en="&ldquo;Reawaken your joyful interior world with nostalgic strokes.&rdquo;">&ldquo;Đánh thức sự hồn nhiên thuần khiết, lưu giữ trọn vẹn nét trẻ trung.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 3 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG38.jpg" alt="Set 3"></div>
-                <div class="product-details">
-                    <h3 data-vi="Thế Giới Đại Dương Kỳ Thú" data-en="Artistic Ocean Spongebob">Thế Giới Đại Dương Kỳ Thú</h3>
-                    <p class="slogan" data-vi="&ldquo;Bản hòa ca của biển cả sống động, kể câu chuyện độc bản của chính bạn.&rdquo;" data-en="&ldquo;Playful ocean colors designed for high-spirited personalities.&rdquo;">&ldquo;Bản hòa ca của biển cả sống động, kể câu chuyện độc bản của chính bạn.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 4 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG39.jpg" alt="Set 4"></div>
-                <div class="product-details">
-                    <h3 data-vi="Sắc Tím Dạ Yên Thảo Đính Đá" data-en="Imperial Violet Floral & Gems">Sắc Tím Dạ Yên Thảo Đính Đá</h3>
-                    <p class="slogan" data-vi="&ldquo;Mộng mơ pha chút huyền bí, chạm vào sự lãng mạn tinh tế tột cùng.&rdquo;" data-en="&ldquo;Captivating violet tones blended with ultra-luxurious jewels.&rdquo;">&ldquo;Mộng mơ pha chút huyền bí, chạm vào sự lãng mạn tinh tế tột cùng.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 5 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG40.jpg" alt="Set 5"></div>
-                <div class="product-details">
-                    <h3 data-vi="Hương Vị Nâu Espresso Cá Tính" data-en="Rich Espresso & Latte Concept">Hương Vị Nâu Espresso Cá Tính</h3>
-                    <p class="slogan" data-vi="&ldquo;Nồng nàn và quyến rũ như ly cà phê sớm, khẳng định gu thời trang thời thượng.&rdquo;" data-en="&ldquo;A warm, modern palette capturing contemporary aesthetic values.&rdquo;">&ldquo;Nồng nàn và quyến rũ như ly cà phê sớm, khẳng định gu thời trang thời thượng.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 6 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG41.jpg" alt="Set 6"></div>
-                <div class="product-details">
-                    <h3 data-vi="Hộp Studio Cà Phê Sang Chảnh" data-en="Coffee House Studio Collection">Hộp Studio Cà Phê Sang Chảnh</h3>
-                    <p class="slogan" data-vi="&ldquo;Trọn vẹn sự ngọt ngào sâu lắng, nâng niu đôi bàn tay ngọc ngà của bạn.&rdquo;" data-en="&ldquo;Pamper your hands with a sweet, luxurious coffee aesthetic.&rdquo;">&ldquo;Trọn vẹn sự ngọt ngào sâu lắng, nâng niu đôi bàn tay ngọc ngà của bạn.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bộ 7 -->
-            <div class="product-card">
-                <div class="product-img-holder"><img src="IMG42.jpg" alt="Set 7"></div>
-                <div class="product-details">
-                    <h3 data-vi="Set Tráng Gương Y2K Chrome Cao Cấp" data-en="Premium Y2K Chrome Box Set">Set Tráng Gương Y2K Chrome Cao Cấp</h3>
-                    <p class="slogan" data-vi="&ldquo;Bản lĩnh dẫn đầu tương lai, phản chiếu vẻ đẹp độc lập đầy quyền lực.&rdquo;" data-en="&ldquo;Futuristic metallic chrome, mirroring your independent power.&rdquo;">&ldquo;Bản lĩnh dẫn đầu tương lai, phản chiếu vẻ đẹp độc lập đầy quyền lực.&rdquo;</p>
-                    <a href="#" class="cart-action-btn dynamic-cart-url" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        <span class="cart-btn-text">Thêm Vào Giỏ Hàng</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
+        <div class="product-grid" id="product-grid"></div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Haute Nails Premium. Crafted with Passion.</p>
-    </footer>
-
-    <!-- --- XỬ LÝ CHUYỂN ĐỔI NGÔN NGỮ & LIÊN KẾT ĐỘNG VỚI INSTAGRAM/ZALO --- -->
     <script>
-        // Điền link của bạn tại đây để hệ thống tự động điều hướng chính xác
-        const ACCOUNT_ZALO = "https://zalo.me/YOUR_ZALO_PHONE";       
-        const ACCOUNT_INSTAGRAM = "https://instagram.com/YOUR_INSTAGRAM_USER"; 
+        const ACCOUNT_ZALO = "https://zalo.me/YOUR_ZALO_PHONE";
+        const ACCOUNT_INSTAGRAM = "https://instagram.com/YOUR_INSTAGRAM_USER";
 
-            // Dữ liệu nội dung quảng cáo ngắn, sâu sắc cho từng ảnh chạy slide
-    const marqueeData = [
-        { img: "IMG02.jpg", vi: "Lưu giữ nét trẻ trung, tinh nghịch đầy sức sống", en: "Keep the playful, energetic vibe alive" },
-        { img: "IMG03.jpg", vi: "Một đại dương nghệ thuật độc bản trên tay bạn", en: "A unique ocean artistic statement on your hands" },
-        { img: "IMG04.jpg", vi: "Chạm vào sắc tím mộng mơ sang quý", en: "Feel the majestic and dreamy royalty" },
-        { img: "IMG05.jpg", vi: "Espresso nồng nàn, định hình gu thời thượng", en: "Rich Espresso, shaping your bold modern taste" },
-        { img: "IMG06.jpg", vi: "Sự ngọt ngào trọn vẹn dành tặng đôi tay", en: "Pure sweetness pampering your beautiful fingers" },
-        { img: "IMG07.jpg", vi: "Chrome tráng gương tương lai, dẫn đầu mọi xu hướng", en: "Futuristic chrome mirror, leading every trend" }
-    ]; //
-    // Dữ liệu nội dung quảng cáo ngắn, sâu sắc cho từng ảnh chạy slide
-    const marqueeData = [
-        { img: "IMG14.jpg", vi: "Tôn vinh nét kiêu kỳ phụ nữ Á Đông", en: "Celebrating pure elegance feminine grace" },
-        { img: "IMG13.jpg", vi: "Lưu giữ nét trẻ trung, tinh nghịch đầy sức sống", en: "Keep the playful, energetic vibe alive" },
-        { img: "IMG12.jpg", vi: "Một đại dương nghệ thuật độc bản trên tay bạn", en: "A unique ocean artistic statement on your hands" },
-        { img: "IMG11.jpg", vi: "Chạm vào sắc tím mộng mơ sang quý", en: "Feel the majestic and dreamy royalty" },
-        { img: "IMG10.jpg", vi: "Espresso nồng nàn, định hình gu thời thượng", en: "Rich Espresso, shaping your bold modern taste" },
-        { img: "IMG09.jpg", vi: "Sự ngọt ngào trọn vẹn dành tặng đôi tay", en: "Pure sweetness pampering your beautiful fingers" },
-        { img: "IMG01.jpg", vi: "Chrome tráng gương tương lai, dẫn đầu mọi xu hướng", en: "Futuristic chrome mirror, leading every trend" }
-    ]; // Đã thêm dấu ] và ; ở đây
+        // Anh thêm hình tại đây, tối đa 20 hình cho dòng chạy
+        const marqueeData = [
+            { img: "IMG01.jpg", vi: "Nét kiêu kỳ Á Đông", en: "Asian Elegance" },
+            { img: "IMG02.jpg", vi: "Trẻ trung cá tính", en: "Youthful Vibe" },
+            { img: "IMG03.jpg", vi: "Nghệ thuật đại dương", en: "Ocean Art" },
+            { img: "IMG04.jpg", vi: "Sắc tím mộng mơ", en: "Dreamy Violet" },
+            { img: "IMG05.jpg", vi: "Espresso nồng nàn", en: "Rich Espresso" },
+            { img: "IMG06.jpg", vi: "Sự ngọt ngào tinh tế", en: "Pure Sweetness" },
+            { img: "IMG07.jpg", vi: "Chrome tương lai", en: "Future Chrome" },
+            { img: "IMG08.jpg", vi: "Thiết kế độc bản", en: "Unique Design" },
+            { img: "IMG09.jpg", vi: "Đỉnh cao Press-on", en: "Premium Press-on" },
+            { img: "IMG10.jpg", vi: "Sang chảnh tuyệt đối", en: "Luxury Style" }
+            // Anh có thể copy thêm dòng và đổi tên file vào đây...
+        ];
 
-
-        // Khởi tạo dải quảng cáo trượt mượt vô tận (X2 mảng dữ liệu)
-        function initMarquee() {
+        function init() {
             const track = document.getElementById('marquee-track');
-            const doubleData = [...marqueeData, ...marqueeData]; // Nhân đôi để chạy không bao giờ hết
-            
-            track.innerHTML = doubleData.map(item => `
+            track.innerHTML = [...marqueeData, ...marqueeData].map(item => `
                 <div class="marquee-item">
-                    <div class="marquee-img-box">
-                        <img src="${item.img}" alt="Nails Ad">
-                    </div>
-                    <div class="marquee-text-box">
-                        <p class="marquee-slogan-text" data-vi="${item.vi}" data-en="${item.en}">${item.vi}</p>
+                    <img src="${item.img}" alt="Nails">
+                    <div class="marquee-text">${item.vi}</div>
+                </div>
+            `).join('');
+
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = marqueeData.slice(0, 8).map(item => `
+                <div class="product-card">
+                    <img src="${item.img}" alt="Product">
+                    <div class="product-info">
+                        <h3>Nails Couture</h3>
+                        <a href="${ACCOUNT_ZALO}" class="cart-action-btn dynamic-cart">Đặt Hàng Ngay</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Hàm thay đổi ngôn ngữ và hoán đổi vị trí liên kết Zalo <-> Instagram
         function toggleLanguage(lang) {
-            // Đổi trạng thái hiển thị của nút ngôn ngữ
             document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-            // 1. Cập nhật các văn bản tĩnh có thuộc tính data-vi / data-en
-            document.querySelectorAll('[data-vi]').forEach(el => {
-                el.innerHTML = lang === 'vi' ? el.getAttribute('data-vi') : el.getAttribute('data-en');
-            });
-
-            // 2. Thay đổi liên kết thông minh tại HEADER
-            const headerBtn = document.getElementById('header-social-btn');
-            const headerText = document.getElementById('header-social-text');
-
-            if (lang === 'vi') {
-                headerBtn.className = "contact-link zalo";
-                headerBtn.href = ACCOUNT_ZALO;
-                headerText.textContent = "Zalo Đặt Hàng";
-            } else {
-                headerBtn.className = "contact-link instagram";
-                headerBtn.href = ACCOUNT_INSTAGRAM;
-                headerText.textContent = "Instagram Shop";
-            }
-
-            // 3. Thay đổi liên kết thông minh tại các nút "THÊM VÀO GIỎ HÀNG" của sản phẩm
-            document.querySelectorAll('.product-card').forEach(card => {
-                const cartBtn = card.querySelector('.dynamic-cart-url');
-                const cartText = card.querySelector('.cart-btn-text');
-
-                if (lang === 'vi') {
-                    cartBtn.href = ACCOUNT_ZALO;
-                    cartText.textContent = "Đặt Hàng Qua Zalo";
-                } else {
-                    cartBtn.href = ACCOUNT_INSTAGRAM;
-                    cartText.textContent = "Order on Instagram";
-                }
+            
+            const isVi = (lang === 'vi');
+            document.getElementById('header-social-btn').className = isVi ? "contact-link zalo" : "contact-link instagram";
+            document.getElementById('header-social-text').textContent = isVi ? "Zalo Đặt Hàng" : "Instagram Shop";
+            document.getElementById('header-social-btn').href = isVi ? ACCOUNT_ZALO : ACCOUNT_INSTAGRAM;
+            
+            document.querySelectorAll('.dynamic-cart').forEach(btn => {
+                btn.textContent = isVi ? "Đặt Hàng Ngay" : "Order Now";
+                btn.href = isVi ? ACCOUNT_ZALO : ACCOUNT_INSTAGRAM;
             });
         }
 
-        // Kích hoạt hệ thống khi trang web được nạp xong
-        document.addEventListener('DOMContentLoaded', () => {
-            initMarquee();
-            toggleLanguage('vi'); // Mặc định mở đầu bằng Tiếng Việt thân thiện
-        });
+        document.addEventListener('DOMContentLoaded', () => { init(); toggleLanguage('vi'); });
     </script>
 </body>
 </html>
+                          
