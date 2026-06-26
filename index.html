@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haute Nails Couture - Premium Press-On Nails</title>
+    <title>Haute Nails Couture</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
         :root { --accent-gold: #d4af37; --bg-deep-purple: #1a0b2e; --surface-purple: #2d164d; --text-light: #ffffff; --text-muted: #d1c4e9; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); border-bottom: 1px solid #4a148c; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        /* HEADER */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); border-bottom: 1px solid #4a148c; position: sticky; top: 0; z-index: 1000; }
         .brand-logo { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); text-transform: uppercase; }
-        .nav-right { display: flex; align-items: center; gap: 10px; }
+        .nav-right { display: flex; align-items: center; gap: 8px; }
         .btn-action { padding: 6px 12px; border-radius: 20px; font-size: 10px; text-decoration: none; color: #fff; font-weight: 600; text-transform: uppercase; }
         .btn-zalo { background-color: #0068ff; }
         .btn-mess { background-color: #0084ff; }
         .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         
+        /* MARQUEE CHẬM RÃI */
         .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #120822; }
-        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 45s linear infinite; width: max-content; }
-        .marquee-track:hover { animation-play-state: paused; } /* Dừng khi di chuột */
-        .marquee-item { min-width: 200px; background: var(--surface-purple); border-radius: 8px; overflow: hidden; border: 1px solid #4a148c; transition: 0.3s; cursor: pointer; }
-        .marquee-item img { width: 100%; height: 200px; object-fit: cover; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 60s linear infinite; width: max-content; }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-item { min-width: 200px; background: var(--surface-purple); border-radius: 8px; border: 1px solid #4a148c; cursor: pointer; transition: 0.3s; }
+        .marquee-item:hover { transform: scale(1.03); border-color: var(--accent-gold); }
+        .marquee-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; }
         .marquee-text { padding: 8px; font-size: 10px; text-align: center; color: var(--text-muted); }
 
-        .store-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .store-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-        .product-card { background: var(--surface-purple); border-radius: 12px; overflow: hidden; border: 1px solid #4a148c; }
-        .product-card img { width: 100%; height: 280px; object-fit: cover; }
-        .product-info { padding: 15px; text-align: center; }
-        .btn-buy { display: block; margin: 10px 0; padding: 12px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-decoration: none; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
+        .product-card { background: var(--surface-purple); border-radius: 12px; border: 1px solid #4a148c; padding: 10px; }
+        .btn-buy { display: block; margin-top: 10px; padding: 10px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-align: center; text-decoration: none; border-radius: 4px; font-size: 11px; text-transform: uppercase; }
         
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
@@ -42,37 +43,30 @@
     <header>
         <div class="brand-logo">Haute Couture</div>
         <div class="nav-right">
+            <!-- THAY LINK VÀO ĐÂY -->
             <a href="https://zalo.me/YOUR_PHONE" class="btn-action btn-zalo">Zalo</a>
             <a href="https://m.me/YOUR_PAGE" class="btn-action btn-mess">Mess</a>
-            <a href="https://instagram.com/YOUR_USER" class="btn-action btn-insta">Insta</a>
-            <div style="display:flex; border: 1px solid #7b1fa2; border-radius: 4px; overflow: hidden;">
-                <button class="lang-btn" id="btn-vi" style="padding:5px; background:var(--accent-gold); border:none; cursor:pointer;" onclick="setLang('vi')">VI</button>
-                <button class="lang-btn" id="btn-en" style="padding:5px; background:transparent; color:#fff; border:none; cursor:pointer;" onclick="setLang('en')">EN</button>
-            </div>
+            <a href="https://instagram.com/YOUR_INSTA_USER" class="btn-action btn-insta">Insta</a>
+            
+            <button onclick="setLang('vi')" style="background:var(--accent-gold); border:none; padding:5px; cursor:pointer;">VI</button>
+            <button onclick="setLang('en')" style="background:transparent; border:1px solid var(--text-muted); color:#fff; padding:5px; cursor:pointer;">EN</button>
         </div>
     </header>
 
-    <div class="marquee-container">
-        <div class="marquee-track" id="marquee-track"></div>
-    </div>
+    <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
 
-    <section class="store-section" id="store-section">
-        <div class="product-grid" id="product-grid"></div>
-    </section>
+    <section class="store-section"><div class="product-grid" id="product-grid"></div></section>
 
     <script>
         const marqueeData = Array.from({ length: 45 }, (_, i) => ({
-            id: `item-${i}`,
-            img: `IMG${(i + 1).toString().padStart(2, '0')}.jpg`,
+            id: `item-${i}`, img: `IMG${(i + 1).toString().padStart(2, '0')}.jpg`,
             vi: `Mẫu ${i + 1}`, en: `Design ${i + 1}`
         }));
 
-        // Gợi ý nhạc cho anh: 
-        // Nhạc Việt: Piano nhẹ nhàng
-        // Nhạc Mỹ: Lofi Jazz (hot trend cho shop sang)
+        // Nhạc không lời piano nhẹ nhàng
         const music = {
-            vi: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", 
-            en: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+            vi: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+            en: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         };
 
         function init() {
@@ -87,22 +81,21 @@
             const grid = document.getElementById('product-grid');
             grid.innerHTML = marqueeData.map(item => `
                 <div class="product-card" id="${item.id}">
-                    <img src="${item.img}" alt="Product">
-                    <div class="product-info">
-                        <a href="https://zalo.me/YOUR_PHONE" class="btn-buy dynamic-text">Đặt Hàng Ngay</a>
-                    </div>
+                    <img src="${item.img}" style="width:100%; height:250px; object-fit:cover; border-radius:8px;">
+                    <a href="https://zalo.me/YOUR_PHONE" class="btn-buy dynamic-text">Đặt Hàng Ngay</a>
                 </div>
             `).join('');
-            setLang('vi');
+            
+            const player = document.getElementById('music-player');
+            player.volume = 0.2; // Nhạc nhỏ, êm đềm
         }
 
         function setLang(lang) {
             document.querySelectorAll('.dynamic-text').forEach(el => el.textContent = lang === 'vi' ? 'Đặt Hàng Ngay' : 'Order Now');
             const player = document.getElementById('music-player');
             player.src = (lang === 'vi') ? music.vi : music.en;
-            player.play().catch(e => console.log("Cần click vào trang để nhạc tự phát"));
+            player.play().catch(() => {});
         }
-
         init();
     </script>
 </body>
