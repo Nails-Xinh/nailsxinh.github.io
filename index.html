@@ -6,42 +6,25 @@
     <title>Haute Nails Couture</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap');
-        
-        :root { 
-            --gold: #d4af37; 
-            --deep-purple: #1a0b2e; 
-            --surface-purple: #2d164d; 
-            --text-light: #ffffff; 
-            --text-muted: #e0d0f5; 
-        }
+        :root { --gold: #d4af37; --deep-purple: #1a0b2e; --surface-purple: #2d164d; --text-light: #ffffff; --text-muted: #e0d0f5; }
+        body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); border-bottom: 1px solid #4a148c; position: sticky; top: 0; z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(26, 11, 46, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #4a148c; }
         .brand-logo { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); font-style: italic; }
-        
-        .nav-right { display: flex; align-items: center; gap: 10px; }
-        .btn-action { padding: 8px 16px; border-radius: 20px; font-size: 10px; text-decoration: none; color: #fff; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
-        .btn-zalo { background-color: #0068ff; }
-        .btn-mess { background-color: #0084ff; }
-        .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743); }
 
-        /* PHẦN LỜI CHÀO */
-        .welcome-section { text-align: center; padding: 50px 20px; }
-        .welcome-text { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); margin-bottom: 10px; }
-        .welcome-sub { color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        /* LỜI CHÀO NGHỆ THUẬT (XOAY VÒNG) */
+        .welcome-section { text-align: center; padding: 60px 20px; min-height: 150px; }
+        .welcome-text { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); }
 
         .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #120822; }
-        .marquee-track { display: flex; gap: 25px; animation: scrollMarquee 90s linear infinite; width: max-content; }
-        .marquee-track:hover { animation-play-state: paused; }
-        .marquee-item { min-width: 220px; background: var(--surface-purple); border-radius: 12px; border: 1px solid #4a148c; cursor: pointer; }
+        .marquee-track { display: flex; gap: 25px; animation: scrollMarquee 90s linear infinite; }
+        .marquee-item { min-width: 220px; background: var(--surface-purple); border-radius: 12px; border: 1px solid #4a148c; }
         .marquee-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px 12px 0 0; }
-        .marquee-text { padding: 10px; font-size: 11px; text-align: center; color: var(--text-muted); font-family: 'Playfair Display', serif; }
 
         .store-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 30px; }
-        .product-card { background: var(--surface-purple); border-radius: 15px; border: 1px solid #4a148c; padding: 12px; }
-        .btn-buy { display: block; margin-top: 12px; padding: 12px; border: 1px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; border-radius: 6px; font-size: 11px; text-transform: uppercase; }
+        .product-card { background: var(--surface-purple); border-radius: 15px; padding: 15px; border: 1px solid #4a148c; }
+        .btn-buy { display: block; margin-top: 15px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
         
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
@@ -50,54 +33,48 @@
 
     <header>
         <div class="brand-logo">Haute Nails</div>
-        <div class="nav-right">
-            <a href="https://zalo.me/0937244764" class="btn-action btn-zalo" target="_blank">Zalo</a>
-            <a href="https://m.me/100088924357778" class="btn-action btn-mess" target="_blank">Mess</a>
-            <a href="https://www.instagram.com/hana26096" class="btn-action btn-insta" target="_blank">Insta</a>
-            <button onclick="setLang('vi')" style="background:var(--gold); border:none; padding:5px; cursor:pointer;">VI</button>
-            <button onclick="setLang('en')" style="background:transparent; border:1px solid #fff; color:#fff; padding:5px; cursor:pointer;">EN</button>
+        <div style="display: flex; gap: 10px;">
+            <a href="https://zalo.me/0937244764" class="btn-buy" style="background:#0068ff; color:#fff; margin:0;">Zalo</a>
         </div>
     </header>
 
     <div class="welcome-section">
-        <h2 class="welcome-text" id="hello-text">Kính chào quý khách!</h2>
-        <p class="welcome-sub" id="sub-text">Hôm nay quý khách cần tôi làm đẹp cho bộ móng tay, móng chân hay mẫu nail nào? Chúng tôi luôn sẵn sàng phục vụ theo yêu cầu riêng của quý khách.</p>
+        <h2 class="welcome-text" id="welcome-msg"></h2>
     </div>
 
     <div class="marquee-container"><div class="marquee-track" id="marquee-track"></div></div>
-
     <section class="store-section"><div class="product-grid" id="product-grid"></div></section>
 
+    <!-- Facebook Chat Plugin -->
+    <div id="fb-root"></div>
+    <div id="fb-customer-chat" class="fb-customerchat"></div>
     <script>
-        const marqueeData = Array.from({ length: 45 }, (_, i) => ({
-            id: `item-${i}`, img: `IMG${(i + 1).toString().padStart(2, '0')}.jpg`,
-            vi: `Thiết kế ${i + 1}`, en: `Design ${i + 1}`
-        }));
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "100088924357778"); // ID Page của anh
+        chatbox.setAttribute("attribution", "biz_inbox");
+        window.fbAsyncInit = function() { FB.init({ xfbml: true, version: 'v12.0' }); };
+        (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
 
-        function init() {
-            const track = document.getElementById('marquee-track');
-            track.innerHTML = [...marqueeData, ...marqueeData].map(item => `
-                <div class="marquee-item" onclick="document.getElementById('${item.id}').scrollIntoView({behavior:'smooth'})">
-                    <img src="${item.img}" alt="Nails">
-                    <div class="marquee-text">${item.vi}</div>
-                </div>
-            `).join('');
+        // Lời chào xoay vòng
+        const msgs = [
+            "Đánh thức vẻ đẹp tiềm ẩn của đôi bàn tay. Hãy để chúng tôi chăm sóc bạn ngay hôm nay!",
+            "Bạn đang tìm kiếm một bộ nail nghệ thuật? Nhấn 'Đặt hàng' để nhận tư vấn thiết kế độc bản dành riêng cho bạn.",
+            "Nâng tầm phong cách với những thiết kế nail thời thượng. Liên hệ với chúng tôi để được tư vấn miễn phí!"
+        ];
+        document.getElementById('welcome-msg').textContent = msgs[Math.floor(Math.random() * msgs.length)];
 
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = marqueeData.map(item => `
-                <div class="product-card" id="${item.id}">
-                    <img src="${item.img}" style="width:100%; height:260px; object-fit:cover; border-radius:10px;">
-                    <a href="https://zalo.me/0937244764" class="btn-buy dynamic-text" target="_blank">Đặt Hàng Ngay</a>
-                </div>
-            `).join('');
+        // Tạo dữ liệu sản phẩm
+        const grid = document.getElementById('product-grid');
+        const track = document.getElementById('marquee-track');
+        for(let i=1; i<=45; i++) {
+            let itemHTML = `
+                <div class="product-card">
+                    <img src="IMG${i.toString().padStart(2, '0')}.jpg" style="width:100%; height:260px; object-fit:cover; border-radius:10px;">
+                    <a href="https://m.me/100088924357778" class="btn-buy">Đặt Hàng Ngay</a>
+                </div>`;
+            grid.innerHTML += itemHTML;
+            track.innerHTML += `<div class="marquee-item"><img src="IMG${i.toString().padStart(2, '0')}.jpg"><div style="padding:10px; text-align:center; font-size:12px;">Mẫu ${i}</div></div>`;
         }
-
-        function setLang(lang) {
-            document.getElementById('hello-text').textContent = (lang === 'vi') ? 'Kính chào quý khách!' : 'Welcome to Haute Nails!';
-            document.getElementById('sub-text').textContent = (lang === 'vi') ? 'Hôm nay quý khách cần tôi làm đẹp cho bộ móng tay, móng chân hay mẫu nail nào? Chúng tôi luôn sẵn sàng phục vụ theo yêu cầu riêng của quý khách.' : 'How can we help you today? We provide customized nail services to match your unique style.';
-            document.querySelectorAll('.dynamic-text').forEach(el => el.textContent = lang === 'vi' ? 'Đặt Hàng Ngay' : 'Order Now');
-        }
-        init();
     </script>
 </body>
 </html>
