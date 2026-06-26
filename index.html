@@ -21,10 +21,10 @@
         .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 5px 10px; font-size: 11px; cursor: pointer; }
         .lang-btn.active { background-color: var(--accent-gold); color: #000; }
 
-        /* MARQUEE CẢI TIẾN */
-        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; cursor: pointer; }
-        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 200s linear infinite; }
-        .marquee-item { min-width: 200px; background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; transition: transform 0.3s; }
+        /* MARQUEE TỐC ĐỘ CHẬM VỪA PHẢI */
+        .marquee-container { width: 100%; overflow: hidden; padding: 40px 0; background: #0a0a0a; }
+        .marquee-track { display: flex; gap: 20px; animation: scrollMarquee 300s linear infinite; } /* Tăng thời gian để chạy chậm hơn */
+        .marquee-item { min-width: 200px; background: var(--surface-dark); border-radius: 8px; overflow: hidden; border: 1px solid #222; transition: transform 0.3s; cursor: pointer; }
         .marquee-item:hover { transform: scale(1.05); border-color: var(--accent-gold); }
         .marquee-item img { width: 100%; height: 200px; object-fit: cover; }
         .marquee-text { padding: 8px; font-size: 10px; text-align: center; }
@@ -55,7 +55,7 @@
         </div>
     </header>
 
-    <div class="marquee-container" onclick="window.scrollTo({top: document.getElementById('store-section').offsetTop - 100, behavior: 'smooth'})">
+    <div class="marquee-container">
         <div class="marquee-track" id="marquee-track"></div>
     </div>
 
