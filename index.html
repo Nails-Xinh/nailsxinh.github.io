@@ -11,20 +11,26 @@
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
-        .nav-group { display: flex; align-items: center; gap: 8px; }
-        .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
-        .hotline-bar { font-size: 14px; color: var(--gold); font-weight: bold; margin-right: 20px; text-decoration: none; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 4px; }
+        .nav-group { display: flex; align-items: center; gap: 10px; }
+        
+        /* Tìm kiếm */
+        .search-box { display: flex; align-items: center; background: #fff; padding: 2px 5px; border-radius: 4px; }
+        .search-box input { border: none; outline: none; padding: 5px; }
+        .search-box button { background: none; border: none; cursor: pointer; color: #1a0b2e; font-weight: bold; }
 
-        .ads-section { text-align: center; padding: 40px 5%; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-style: italic; }
+        .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
+        .hotline-bar { font-size: 13px; color: var(--gold); font-weight: bold; text-decoration: none; border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px; }
+
+        .ads-section { text-align: center; padding: 40px 5%; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-style: italic; }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
-        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
+        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; transition: transform 0.3s; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
         .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; }
         .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
 
-        /* Zoom ảnh */
         #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
         #lightbox img { max-width: 90%; max-height: 90%; }
+        .map-section { text-align: center; padding: 40px; background: #0e061a; }
     </style>
 </head>
 <body>
@@ -32,9 +38,8 @@
     <header>
         <div class="logo">Hana Nails</div>
         <div class="nav-group">
-            <a href="tel:0937244764" class="hotline-bar">Hotline: 0937 244 764</a>
-            <a href="https://zalo.me/0937244764" class="nav-btn" style="background:#0068ff; color:#fff;">Zalo</a>
-            <a href="https://m.me/100088924357778" class="nav-btn" style="background:#0084ff; color:#fff;">Mess</a>
+            <div class="search-box"><input type="text" id="search" placeholder="Nhập MS..."> <button onclick="searchProduct()">🔍</button></div>
+            <a href="tel:0937244764" class="hotline-bar">0937 244 764</a>
             <button class="nav-btn" onclick="setLang('vi')">VI</button>
             <button class="nav-btn" onclick="setLang('en')">EN</button>
         </div>
@@ -43,6 +48,11 @@
     <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
     <div class="ads-section" id="welcome-msg">Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.</div>
     <section id="main-content"></section>
+
+    <div class="map-section">
+        <h2 style="color:var(--gold)">Vị trí của chúng tôi</h2>
+        <a href="ĐƯỜNG_LINK_GOOGLE_MAPS_CỦA_ANH_VÀO_ĐÂY" target="_blank" style="color:#fff; text-decoration:underline;">Nhấn vào đây để xem bản đồ tiệm</a>
+    </div>
 
     <script>
         const msgs = [
@@ -55,15 +65,21 @@
             "Sự hài lòng của quý khách chính là thước đo giá trị cho nghệ thuật của chúng tôi.",
             "Trở thành phiên bản rực rỡ nhất của chính mình ngay từ hôm nay.",
             "Đôi tay là tấm gương phản chiếu tâm hồn và gu thẩm mỹ đỉnh cao.",
-            "Chúng tôi không chỉ làm nail, chúng tôi kiến tạo nên những tác phẩm nghệ thuật.",
+            "Chúng tôi kiến tạo nên những tác phẩm nghệ thuật trên đôi tay bạn.",
             "Nâng niu giá trị bản thân bắt đầu từ việc chăm chút cho đôi bàn tay.",
             "Sự tinh tế của quý khách xứng đáng với những dịch vụ thượng hạng nhất.",
             "Hana Nails - Nơi vẻ đẹp được định nghĩa lại bởi sự hoàn mỹ.",
             "Hãy để mỗi ngón tay kể một câu chuyện về phong cách sống của bạn.",
             "Quý khách là khách hàng đặc biệt, và xứng đáng với những trải nghiệm tuyệt vời.",
-            "Chúng tôi trân trọng từng khoảnh khắc quý khách tin tưởng gửi gắm niềm tin.",
-            "Đẹp một cách khác biệt - Đó là lời cam kết của Hana Nails dành cho bạn.",
-            "Tự tin sải bước với bộ móng hoàn hảo chỉ dành riêng cho chủ nhân xứng tầm."
+            "Đẹp một cách khác biệt - Đó là lời cam kết của Hana Nails.",
+            "Tự tin sải bước với bộ móng hoàn hảo chỉ dành riêng cho chủ nhân xứng tầm.",
+            "Vẻ đẹp kiêu sa, bắt trọn ánh nhìn trong từng cử động.",
+            "Đơn giản là đỉnh cao của sự sang trọng.",
+            "Bản lĩnh và dịu dàng - đó là vẻ đẹp của quý khách.",
+            "Hana Nails - Tôn vinh nét đẹp độc tôn của chính bạn.",
+            "Đừng chỉ làm đẹp, hãy tỏa sáng theo cách riêng của bạn.",
+            "Chạm vào tinh hoa, trải nghiệm đẳng cấp nail thượng lưu.",
+            "Quý khách luôn là ưu tiên hàng đầu, là chủ nhân của không gian này."
         ];
 
         const container = document.getElementById('main-content');
@@ -74,7 +90,7 @@
             
             let imgName = `IMG${i.toString().padStart(2, '0')}.jpg`;
             document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
-                <div class="product-card">
+                <div class="product-card" id="${code}">
                     <div class="code-label">${code}</div>
                     <img src="${imgName}" class="product-img" onclick="showZoom('${imgName}')">
                     <a href="https://m.me/100088924357778?text=Tôi muốn đặt mẫu ${code}" class="btn-buy">Đặt Mẫu ${code}</a>
@@ -88,6 +104,13 @@
         function showZoom(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function searchProduct() {
+            let val = document.getElementById('search').value.toUpperCase();
+            let el = document.getElementById(val);
+            if(el) el.scrollIntoView({behavior: 'smooth'});
+            else alert("Không tìm thấy mã số này!");
         }
 
         function setLang(lang) {
