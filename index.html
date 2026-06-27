@@ -20,7 +20,14 @@
         .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
         .action-link { font-size: 11px; color: #fff; text-decoration: none; background: #332050; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--gold); }
 
-        .ads-section { text-align: center; padding: 40px 5%; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-style: italic; }
+        /* Khung ảnh chạy tự động */
+        .scrolling-wrapper { display: flex; overflow-x: auto; padding: 10px 0; background: #120822; gap: 10px; border-bottom: 1px solid var(--gold); }
+        .scrolling-wrapper::-webkit-scrollbar { display: none; }
+        .scrolling-wrapper img { height: 150px; border-radius: 8px; border: 1px solid var(--gold); }
+
+        .marquee-container { background: #0e061a; color: var(--gold); padding: 10px 0; overflow: hidden; border-bottom: 1px solid #332050; font-style: italic; }
+        
+        .ads-section { text-align: center; padding: 30px 5%; font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold); font-style: italic; }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
         .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
@@ -47,11 +54,23 @@
         </div>
     </header>
 
+    <!-- Thanh ảnh chạy tự động -->
+    <div class="scrolling-wrapper" id="slider-content"></div>
+
+    <div class="marquee-container">
+        <marquee scrollamount="4">✨ Hana Nails - Đẳng cấp nghệ thuật trên đôi tay quý khách | Tôn vinh vẻ đẹp độc bản ✨</marquee>
+    </div>
+
     <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
-    <div class="ads-section" id="welcome-msg">Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.</div>
     <section id="main-content"></section>
 
     <script>
+        // Tạo ảnh chạy tự động (từ 01 đến 10)
+        const slider = document.getElementById('slider-content');
+        for(let i=1; i<=10; i++) {
+            slider.innerHTML += `<img src="IMG${i.toString().padStart(2, '0')}.jpg" alt="Mẫu ${i}">`;
+        }
+
         const msgs = [
             "Vẻ đẹp của quý khách là nguồn cảm hứng bất tận của chúng tôi.",
             "Hãy để Hana Nails tôn vinh phong thái quý phái của riêng bạn.",
@@ -76,12 +95,21 @@
             "Hana Nails - Tôn vinh nét đẹp độc tôn của chính bạn.",
             "Đừng chỉ làm đẹp, hãy tỏa sáng theo cách riêng của bạn.",
             "Chạm vào tinh hoa, trải nghiệm đẳng cấp nail thượng lưu.",
-            "Quý khách luôn là ưu tiên hàng đầu, là chủ nhân của không gian này."
+            "Quý khách luôn là ưu tiên hàng đầu, là chủ nhân của không gian này.",
+            "Thần thái đỉnh cao bắt đầu từ đôi bàn tay kiêu sa.",
+            "Hana Nails - Khơi nguồn cảm hứng cho sự tự tin của phái đẹp.",
+            "Sự sang trọng không bao giờ là lỗi mốt.",
+            "Mỗi bộ nail là một bản tuyên ngôn về phong cách cá nhân.",
+            "Đẹp tinh tế, đẳng cấp riêng biệt.",
+            "Nơi vẻ đẹp được chắp cánh bởi đôi bàn tay nghệ nhân.",
+            "Hạnh phúc là khi được là chính mình trong sự hoàn mỹ nhất.",
+            "Tôn vinh giá trị thực của vẻ đẹp hiện đại.",
+            "Đẳng cấp không cần phô trương, chỉ cần sự tinh tế.",
+            "Hana Nails - Điểm đến của những tâm hồn yêu nghệ thuật."
         ];
 
         const container = document.getElementById('main-content');
         
-        // Cập nhật lên 72 ảnh
         for(let i=1; i<=72; i++) {
             let code = "MS" + i.toString().padStart(2, '0');
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
@@ -113,8 +141,7 @@
         }
 
         function setLang(lang) {
-            const data = (lang === 'vi') ? { w: "Cảm ơn quý khách, chúc quý khách một ngày thật nhiều may mắn và hạnh phúc.", b: "Đặt Mẫu" } : { w: "Thank you for visiting, have a wonderful day.", b: "Order Model" };
-            document.getElementById('welcome-msg').textContent = data.w;
+            const data = (lang === 'vi') ? { b: "Đặt Mẫu" } : { b: "Order Model" };
             document.querySelectorAll('.btn-buy').forEach((el, index) => {
                 let code = (index + 1).toString().padStart(2, '0');
                 el.textContent = data.b + " MS" + code;
