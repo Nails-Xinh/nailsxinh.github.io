@@ -9,7 +9,7 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
         .search-container { display: flex; background: #fff; border-radius: 5px; overflow: hidden; height: 35px; }
@@ -20,10 +20,11 @@
         .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
         .action-link { font-size: 11px; color: #fff; text-decoration: none; background: #332050; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--gold); }
 
-        /* Slider ảnh cao cấp */
-        .slider-wrapper { position: relative; width: 100%; max-width: 600px; height: 300px; margin: 20px auto; overflow: hidden; border: 2px solid var(--gold); border-radius: 8px; }
-        .slider-img { position: absolute; width: 100%; height: 100%; object-fit: contain; background: #000; opacity: 0; transition: opacity 1s ease-in-out; cursor: pointer; }
-        .slider-img.active { opacity: 1; }
+        /* Slider 2 ảnh và hoa văn lấp đầy */
+        .slider-wrapper { display: flex; justify-content: center; gap: 10px; width: 100%; max-width: 800px; height: 300px; margin: 20px auto; overflow: hidden; border: 2px solid var(--gold); border-radius: 8px; background: radial-gradient(circle, #2d164d 0%, #1a0b2e 100%); background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><text x="10" y="60" font-family="serif" font-size="40" fill="%23d4af37" opacity="0.1">✿</text></svg>'); }
+        .slide-group { display: flex; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; position: absolute; }
+        .slide-group.active { opacity: 1; }
+        .slide-group img { width: 50%; height: 100%; object-fit: contain; cursor: pointer; background: rgba(0,0,0,0.3); }
 
         .marquee-container { background: #0e061a; color: var(--gold); padding: 10px 0; border-bottom: 1px solid #332050; font-style: italic; }
         .ads-section { text-align: center; padding: 30px 5%; font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold); font-style: italic; }
@@ -53,7 +54,6 @@
         </div>
     </header>
 
-    <!-- Slider ảnh phía trên -->
     <div class="slider-wrapper" id="top-slider"></div>
 
     <div class="marquee-container">
@@ -66,16 +66,24 @@
     <script>
         const container = document.getElementById('main-content');
         const sliderWrapper = document.getElementById('top-slider');
+        const totalImages = 72;
 
-        // Khởi tạo slider và lưới sản phẩm
-        for(let i=1; i<=72; i++) {
+        // Tạo Slider 2 ảnh/nhóm
+        for(let i=0; i < totalImages; i+=2) {
+            let img1 = `IMG${(i+1).toString().padStart(2, '0')}.jpg`;
+            let img2 = (i+2 <= totalImages) ? `IMG${(i+2).toString().padStart(2, '0')}.jpg` : "";
+            
+            let group = document.createElement('div');
+            group.className = "slide-group";
+            group.innerHTML = `<img src="${img1}" onclick="showZoom('${img1}')">` + 
+                             (img2 ? `<img src="${img2}" onclick="showZoom('${img2}')">` : `<div style="width:50%; background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22><text x=%2210%22 y=%2240%22 font-size=%2230%22 fill=%22%23d4af37%22 opacity=%220.2%22>✿</text></svg>');"></div>`);
+            sliderWrapper.appendChild(group);
+        }
+
+        // Tạo lưới sản phẩm
+        for(let i=1; i<=totalImages; i++) {
             let code = "MS" + i.toString().padStart(2, '0');
             let imgName = `IMG${i.toString().padStart(2, '0')}.jpg`;
-
-            // Thêm vào Slider
-            sliderWrapper.innerHTML += `<img src="${imgName}" class="slider-img" onclick="showZoom('${imgName}')">`;
-
-            // Thêm vào lưới sản phẩm
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
             document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
                 <div class="product-card" id="${code}">
@@ -83,23 +91,16 @@
                     <img src="${imgName}" class="product-img" onclick="showZoom('${imgName}')">
                     <a href="https://m.me/100088924357778?text=Tôi muốn đặt mẫu ${code}" class="btn-buy">Đặt Mẫu ${code}</a>
                 </div>`;
-            
-            // Xen kẽ câu quảng cáo (dùng danh sách câu cũ của anh)
-            const msgs = ["Vẻ đẹp của quý khách là nguồn cảm hứng bất tận của chúng tôi.", "Hãy để Hana Nails tôn vinh phong thái quý phái của riêng bạn.", "Đẳng cấp nằm trong tầm tay, phong cách nằm ở sự lựa chọn của bạn.", "Sứ mệnh của chúng tôi là làm nổi bật sự độc bản trong mỗi quý khách hàng.", "Từng đường nét thiết kế là một món quà dành riêng cho vẻ đẹp của bạn.", "Khẳng định vị thế người dẫn đầu phong cách với những tuyệt phẩm nail.", "Sự hài lòng của quý khách chính là thước đo giá trị cho nghệ thuật của chúng tôi.", "Trở thành phiên bản rực rỡ nhất của chính mình ngay từ hôm nay.", "Đôi tay là tấm gương phản chiếu tâm hồn và gu thẩm mỹ đỉnh cao.", "Chúng tôi kiến tạo nên những tác phẩm nghệ thuật trên đôi tay bạn.", "Nâng niu giá trị bản thân bắt đầu từ việc chăm chút cho đôi bàn tay.", "Sự tinh tế của quý khách xứng đáng với những dịch vụ thượng hạng nhất.", "Hana Nails - Nơi vẻ đẹp được định nghĩa lại bởi sự hoàn mỹ.", "Hãy để mỗi ngón tay kể một câu chuyện về phong cách sống của bạn.", "Quý khách là khách hàng đặc biệt, và xứng đáng với những trải nghiệm tuyệt vời.", "Đẹp một cách khác biệt - Đó là lời cam kết của Hana Nails.", "Tự tin sải bước với bộ móng hoàn hảo chỉ dành riêng cho chủ nhân xứng tầm.", "Vẻ đẹp kiêu sa, bắt trọn ánh nhìn trong từng cử động.", "Đơn giản là đỉnh cao của sự sang trọng.", "Bản lĩnh và dịu dàng - đó là vẻ đẹp của quý khách.", "Hana Nails - Tôn vinh nét đẹp độc tôn của chính bạn.", "Đừng chỉ làm đẹp, hãy tỏa sáng theo cách riêng của bạn.", "Chạm vào tinh hoa, trải nghiệm đẳng cấp nail thượng lưu.", "Quý khách luôn là ưu tiên hàng đầu, là chủ nhân của không gian này."];
-            if (i % 2 === 0 && (i/2 - 1) < msgs.length) {
-                container.innerHTML += `<div class="ads-section">${msgs[i/2 - 1]}</div>`;
-            }
         }
 
-        // Logic chạy Slider (4 giây/ảnh)
+        // Logic Slider
         let slideIndex = 0;
-        const slides = document.getElementsByClassName("slider-img");
+        const slides = document.getElementsByClassName("slide-group");
         function showSlides() {
-            for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-            slides[slideIndex-1].classList.add("active");
-            setTimeout(showSlides, 4000); // 4 giây
+            for (let s of slides) s.classList.remove("active");
+            slides[slideIndex].classList.add("active");
+            slideIndex = (slideIndex + 1) % slides.length;
+            setTimeout(showSlides, 4000);
         }
         showSlides();
 
@@ -107,7 +108,7 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
-
+        
         function searchProduct() {
             let val = document.getElementById('search').value.toUpperCase();
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
@@ -115,7 +116,7 @@
             if(el) el.scrollIntoView({behavior: 'smooth'});
             else alert("Vui lòng nhập đúng mã (Ví dụ: MS01)");
         }
-
+        
         function setLang(lang) {
             const data = (lang === 'vi') ? { b: "Đặt Mẫu" } : { b: "Order Model" };
             document.querySelectorAll('.btn-buy').forEach((el, index) => {
