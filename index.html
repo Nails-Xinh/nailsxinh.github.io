@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* 1. Lời chào cuốn hút */
         .welcome-msg { 
             text-align: center; 
             color: var(--gold); 
@@ -69,7 +68,6 @@
             flex-wrap: wrap; 
         }
         
-        /* 2. Tiêu đề Slider thu hút */
         .slider-section {
             text-align: center;
             padding: 30px 20px 10px;
@@ -90,15 +88,15 @@
 
         .slider-container { 
             width: 100%; 
-            max-width: 700px; /* Tăng kích thước slider một chút */
-            height: 400px; /* Tăng chiều cao slider */
+            max-width: 700px;
+            height: 400px;
             margin: 0 auto 30px; 
-            border: 3px solid var(--gold); /* Làm viền đậm hơn */
-            border-radius: 12px; /* Bo góc mềm mại hơn */
+            border: 3px solid var(--gold);
+            border-radius: 12px;
             overflow: hidden; 
             position: relative; 
             background: #1a0b2e; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Thêm bóng đổ cho slider */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         .slide { 
@@ -106,18 +104,18 @@
             width: 100%; 
             height: 100%; 
             opacity: 0; 
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Thêm hiệu ứng di chuyển nhẹ */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            transform: scale(1.05); /* Slide mới hiện ra sẽ lớn hơn một chút */
+            transform: scale(1.05);
         }
         .slide.active { 
             opacity: 1; 
-            transform: scale(1); /* Slide active sẽ về kích thước chuẩn */
+            transform: scale(1);
         }
         .slide img { 
-            max-width: 95%; /* Chiếm nhiều diện tích hơn */
+            max-width: 95%; 
             max-height: 95%; 
             object-fit: contain; 
             cursor: pointer; 
@@ -125,10 +123,9 @@
             transition: transform 0.3s ease;
         }
         .slide img:hover {
-            transform: scale(1.03); /* Phóng to nhẹ khi di chuột */
+            transform: scale(1.03);
         }
         
-        /* CSS cho mã số trên Slider - được giữ nguyên */
         .code-overlay { 
             position: absolute; 
             top: 15px; 
@@ -143,7 +140,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* 3. Quote box với câu từ thu hút hơn */
         .quote-box { 
             text-align: center; 
             max-width: 850px; 
@@ -153,7 +149,7 @@
             font-family: 'Playfair Display', serif; 
             border-top: 1px solid #332050; 
             border-bottom: 1px solid #332050; 
-            background: rgba(45, 22, 77, 0.3); /* Nền mờ cho quote */
+            background: rgba(45, 22, 77, 0.3);
             border-radius: 8px;
         }
         .quote-highlight { 
@@ -195,7 +191,7 @@
         
         .product-img { 
             width: 100%; 
-            height: 280px; /* Tăng chiều cao ảnh sản phẩm */
+            height: 280px;
             object-fit: contain; 
             background: #000; 
             border-radius: 8px; 
@@ -217,7 +213,6 @@
             border-radius: 6px; 
         }
         
-        /* 4. Nút bấm thu hút đặt hàng ngay */
         .btn-buy { 
             display: block; 
             margin-top: 15px; 
@@ -234,11 +229,8 @@
             transition: background 0.3s ease, transform 0.2s ease;
         }
         .btn-buy:hover {
-            background: #f1c40f; /* Vàng sáng hơn khi hover */
+            background: #f1c40f;
             transform: scale(1.02);
-        }
-        .btn-buy:active {
-            transform: scale(0.98);
         }
         
         .action-link { 
@@ -268,14 +260,10 @@
             color: #000;
             transition: background 0.3s ease;
         }
-        .lang-btn:hover {
-            background: #f1c40f;
-        }
         .lang-btn.active {
-            background: #b8932d; /* Màu vàng tối hơn cho nút đang chọn */
+            background: #b8932d;
         }
 
-        /* 5. Tối ưu hóa Lightbox (Phóng to) */
         #lightbox { 
             display: none; 
             position: fixed; 
@@ -283,12 +271,12 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(0,0,0,0.95); /* Nền tối hơn */
+            background: rgba(0,0,0,0.95);
             z-index: 2000; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            cursor: zoom-out; /* Con trỏ chuột khi muốn đóng */
+            cursor: zoom-out;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -297,12 +285,12 @@
             opacity: 1;
         }
         #lightbox img { 
-            max-width: 90%; /* Ảnh lớn hơn */
+            max-width: 90%; 
             max-height: 85%; 
             object-fit: contain;
             border: 4px solid var(--gold);
             border-radius: 12px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* Hào quang vàng xung quanh ảnh */
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
             transform: scale(0.9);
             transition: transform 0.3s ease;
         }
@@ -317,7 +305,6 @@
             font-family: 'Playfair Display', serif;
             letter-spacing: 1px;
         }
-        /* Nút đóng lightbox */
         .close-lightbox {
             position: absolute;
             top: 30px;
@@ -326,10 +313,6 @@
             font-size: 50px;
             font-weight: 300;
             cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .close-lightbox:hover {
-            color: var(--gold);
         }
     </style>
 </head>
@@ -340,10 +323,10 @@
     <header>
         <div class="logo">Hana Nails</div>
         <div class="nav-btn-group">
-            <a href="tel:0937244764" class="action-link">☎ Liên Hệ Ngay: 0937 244 764</a>
+            <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
             <a href="https://maps.app.goo.gl/q2E9Yh7dTTv7u3in6" target="_blank" class="action-link">📍 Chỉ Đường</a>
-            <input type="text" id="search" placeholder="Nhập mã MS..." style="padding:9px; border-radius:6px; width:100px; border:1px solid #4a148c; background:#0e061a; color:#fff; font-size:14px;">
-            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:700; padding:9px 15px; border-radius:6px; color:#000;">🔍 Tìm</button>
+            <input type="text" id="search" placeholder="Mã MS..." style="padding:9px; border-radius:6px; width:80px; border:1px solid #4a148c; background:#0e061a; color:#fff; font-size:14px;">
+            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:700; padding:9px 12px; border-radius:6px; color:#000;">🔍</button>
             <button class="lang-btn active" onclick="setLang('vi')">VI</button>
             <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
@@ -351,7 +334,7 @@
 
     <section class="slider-section">
         <h2 class="slider-title" id="slider-title">Tuyệt Tác Xu Hướng</h2>
-        <p class="slider-subtitle" id="slider-subtitle">Khám phá ngay những mẫu móng độc quyền, đang làm mưa làm gió trong giới thượng lưu.</p>
+        <p class="slider-subtitle" id="slider-subtitle">Khám phá ngay những mẫu móng độc quyền.</p>
         <div class="slider-container" id="slider"></div>
     </section>
 
@@ -366,34 +349,19 @@
     <script>
         const container = document.getElementById('main-content');
         const slider = document.getElementById('slider');
-        const welcomeEl = document.getElementById('welcome');
-        const sliderTitleEl = document.getElementById('slider-title');
-        const sliderSubtitleEl = document.getElementById('slider-subtitle');
         const totalImages = 72;
+        // Link Fanpage Messenger của bạn
+        const MESSENGER_LINK = "https://m.me/100088924357778"; 
 
-        // 3. Cập nhật câu từ mô tả quote box
-        const quoteTitles = {
-            vi: "Tuyệt Tác Nail Art - Đẳng Cấp Thượng Lưu",
-            en: "Masterpiece Nail Art - Elite Sophistication"
-        };
         const descriptions = [
-            { vi: "Sắc đỏ quyến rũ, kiêu sa phối cùng nhũ vàng kim tinh xảo. Một sự kết hợp hoàn hảo để tôn lên vẻ sang trọng quyền lực.", en: "Charming, elegant red paired with intricate gold glitter. A perfect combination to enhance powerful luxury." },
-            { vi: "Tone nude thời thượng điểm xuyết đá quý lấp lánh như những vì sao. Vẻ đẹp tinh tế, nhẹ nhàng nhưng đầy cuốn hút.", en: "Trendy nude tone accented with gemstones sparkling like stars. Sophisticated, gentle yet completely captivating beauty." },
-            { vi: "Sắc đen huyền bí kết hợp cùng họa tiết hoa văn nổi khối 3D đầy nghệ thuật. Dành cho những quý cô yêu thích sự khác biệt.", en: "Mysterious black combined with artistic 3D embossed patterns. For ladies who love distinctive style." },
-            { vi: "Sắc trắng ngọc trai thuần khiết, quý phái điểm xuyết đường vân đá marble đẳng cấp. Vẻ đẹp vượt thời gian.", en: "Pure, noble pearl white accented with luxurious marble veins. Timeless beauty." },
-            { vi: "Tone pastel dịu dàng, nữ tính với những họa tiết vẽ tay thủ công tỉ mỉ. Mang đến cảm giác tươi mới, tràn đầy sức sống.", en: "Gentle, feminine pastel tone with meticulously hand-drawn artistic details. Bringing a fresh, energetic feeling." }
+            { vi: "Sắc đỏ quyến rũ, kiêu sa phối cùng nhũ vàng kim tinh xảo.", en: "Charming, elegant red paired with intricate gold glitter." },
+            { vi: "Tone nude thời thượng điểm xuyết đá quý lấp lánh.", en: "Trendy nude tone accented with sparkling gemstones." },
+            { vi: "Sắc đen huyền bí kết hợp cùng họa tiết hoa văn nổi khối 3D.", en: "Mysterious black combined with artistic 3D embossed patterns." },
+            { vi: "Sắc trắng ngọc trai thuần khiết, phối vân đá marble đẳng cấp.", en: "Pure pearl white with luxurious marble veins." },
+            { vi: "Tone pastel dịu dàng với họa tiết vẽ tay thủ công tỉ mỉ.", en: "Gentle pastel tone with meticulously hand-drawn details." }
         ];
 
-        // 4. Lời kêu gọi trên nút bấm
-        const orderTexts = {
-            vi: "Sở Hữu Ngay Mẫu",
-            en: "Get This Look Now"
-        };
-
-        let currentLang = 'vi';
-
         function init() {
-            // Khởi tạo Slider với mã số
             for(let i=1; i<=totalImages; i++) {
                 let code = "MS" + i.toString().padStart(2, '0');
                 let img = `IMG${i.toString().padStart(2, '0')}.jpg`;
@@ -403,7 +371,7 @@
                         <img src="${img}" onclick="event.stopPropagation(); showZoom('${img}', '${code}')">
                     </div>`;
             }
-            renderProducts(currentLang);
+            renderProducts('vi');
         }
 
         function renderProducts(lang) {
@@ -412,19 +380,19 @@
                 if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
                 let code = "MS" + i.toString().padStart(2, '0');
                 let desc = descriptions[i % descriptions.length][lang];
+                
+                // Nút mua dẫn tới Messenger
+                let orderMsg = lang === 'vi' ? `Tôi muốn sở hữu mẫu ${code}. Tư vấn cho tôi!` : `I want to order ${code}. Please consult me!`;
+                let messengerUrl = `${MESSENGER_LINK}?text=${encodeURIComponent(orderMsg)}`;
+
                 document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
                     <div class="product-card" id="${code}">
                         <div class="code-label">${code}</div>
                         <img src="IMG${i.toString().padStart(2, '0')}.jpg" class="product-img" onclick="showZoom('IMG${i.toString().padStart(2, '0')}.jpg', '${code}')">
-                        <a href="https://m.me/100088924357778?text=Tôi muốn sở hữu mẫu ${code}. Tư vấn cho tôi!" class="btn-buy">${orderTexts[lang]} ${code}</a>
+                        <a href="${messengerUrl}" class="btn-buy" target="_blank">${lang=='vi'?'Sở Hữu Ngay':'Order Now'} ${code}</a>
                     </div>`;
                 
-                // Quote box thu hút hơn
-                if (i % 2 === 0) container.innerHTML += `
-                    <div class="quote-box">
-                        <p class="quote-highlight">${quoteTitles[lang]}</p>
-                        <p class="quote-desc">${desc}</p>
-                    </div>`;
+                if (i % 2 === 0) container.innerHTML += `<div class="quote-box"><p class="quote-highlight">${lang=='vi'?'Tuyệt Tác Nail Art':'Nail Art Masterpiece'}</p><p class="quote-desc">${desc}</p></div>`;
             }
         }
 
@@ -433,67 +401,30 @@
             document.getElementById('lightbox-img').src = src; 
             document.getElementById('lightbox-text').innerText = code;
             lightbox.classList.add('open');
-            document.body.style.overflow = 'hidden'; // Ngăn cuộn trang khi mở lightbox
+            document.body.style.overflow = 'hidden';
         }
 
         function closeZoom() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('open');
-            document.body.style.overflow = ''; // Cho phép cuộn trang lại
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
         }
 
         function setLang(lang) {
-            currentLang = lang;
-            
-            // Cập nhật lời chào và tiêu đề slider
-            if (lang === 'vi') {
-                welcomeEl.innerText = "✨ Hana Nails Couture | Nơi Vẻ Đẹp Thượng Lưu Được Đánh Thức ✨";
-                sliderTitleEl.innerText = "Tuyệt Tác Xu Hướng";
-                sliderSubtitleEl.innerText = "Khám phá ngay những mẫu móng độc quyền, đang làm mưa làm gió trong giới thượng lưu.";
-            } else {
-                welcomeEl.innerText = "✨ Hana Nails Couture | Where Elite Beauty Is Awakened ✨";
-                sliderTitleEl.innerText = "Trending Masterpieces";
-                sliderSubtitleEl.innerText = "Discover exclusive nail designs that are taking the luxury world by storm.";
-            }
-
-            // Cập nhật trạng thái nút ngôn ngữ
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-
+            document.getElementById('welcome').innerText = (lang == 'vi') ? "✨ Hana Nails Couture | Nơi Vẻ Đẹp Thượng Lưu Được Đánh Thức ✨" : "✨ Hana Nails Couture | Where Elite Beauty Is Awakened ✨";
             renderProducts(lang);
         }
 
         function searchProduct() {
             let val = document.getElementById('search').value.toUpperCase().trim();
-            if(!val) return;
-            
-            // Hỗ trợ nhập 'ms1' thay vì 'MS01'
             if(val.startsWith('MS')) {
                 let numPart = val.substring(2);
-                if(numPart.length < 2 && !isNaN(numPart)) {
-                    val = 'MS' + numPart.padStart(2, '0');
-                }
-            } else if (!isNaN(val)) {
-                 val = 'MS' + val.padStart(2, '0');
-            }
-
+                if(numPart.length < 2 && !isNaN(numPart)) val = 'MS' + numPart.padStart(2, '0');
+            } else if (!isNaN(val)) val = 'MS' + val.padStart(2, '0');
+            
             let el = document.getElementById(val);
-            if(el) {
-                // Cuộn mượt mà đến sản phẩm và thêm hiệu ứng làm nổi bật nhẹ
-                el.scrollIntoView({behavior: 'smooth', block: 'center'});
-                el.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.8)';
-                setTimeout(() => el.style.boxShadow = '', 2000); // Xóa hiệu ứng sau 2s
-            } else {
-                alert(currentLang === 'vi' ? "Không tìm thấy mã này. Vui lòng nhập đúng (VD: MS01)" : "Code not found. Please enter correctly (e.g., MS01)");
-            }
+            if(el) el.scrollIntoView({behavior: 'smooth', block: 'center'});
+            else alert("Không tìm thấy mã!");
         }
-
-        // Hỗ trợ phím Enter khi tìm kiếm
-        document.getElementById('search').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                searchProduct();
-            }
-        });
 
         let slideIndex = 0;
         function showSlides() {
@@ -501,7 +432,7 @@
             for(let s of slides) s.classList.remove('active');
             slideIndex = (slideIndex + 1) % slides.length;
             slides[slideIndex].classList.add('active');
-            setTimeout(showSlides, 5000); // Tăng thời gian chuyển slide lên 5s
+            setTimeout(showSlides, 5000);
         }
         
         init();
