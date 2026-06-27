@@ -10,10 +10,12 @@
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
         .welcome-msg { text-align: center; color: var(--gold); padding: 12px; font-family: 'Playfair Display', serif; font-size: 1.2em; border-bottom: 1px solid var(--gold); background: #0e061a; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
-        /* Slider với hoa văn chìm sang trọng */
+        /* Header linh hoạt */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
+        .nav-btn-group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        
         .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; position: relative;
             background: #1a0b2e;
             background-image: radial-gradient(circle, #2d164d 0%, #1a0b2e 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="5" y="75" font-family="serif" font-size="80" fill="%23d4af37" opacity="0.15">✿</text></svg>');
@@ -31,7 +33,6 @@
         .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
         .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
         
-        .nav-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
         .action-link { color: var(--gold); text-decoration: none; font-weight: bold; border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px; font-size: 12px; background: #2d164d; }
         .lang-btn { background: var(--gold); border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 12px; }
 
@@ -48,9 +49,10 @@
         <div class="logo">Hana Nails</div>
         <div class="nav-btn-group">
             <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
-            <a href="https://maps.app.goo.gl/your-link-here" target="_blank" class="action-link">📍 Bản đồ</a>
-            <input type="text" id="search" placeholder="Mã MS..." style="padding:5px; border-radius:4px; width:70px; border:none;">
-            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold; padding:5px 10px; border-radius:4px;">🔍</button>
+            <!-- THAY LINK MAP CỦA ANH VÀO DÒNG DƯỚI NÀY -->
+            <a href="https://maps.app.goo.gl/Thay_Link_Map_Cua_Anh_Vao_Day" target="_blank" class="action-link">📍 Bản đồ</a>
+            <input type="text" id="search" placeholder="Mã..." style="padding:5px; border-radius:4px; width:60px; border:none;">
+            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold; padding:5px 8px; border-radius:4px;">🔍</button>
             <button class="lang-btn" onclick="setLang('vi')">VI</button>
             <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
@@ -68,7 +70,6 @@
         const container = document.getElementById('main-content');
         const slider = document.getElementById('slider');
         const totalImages = 72;
-
         const descriptions = [
             { vi: "Nền đỏ quyến rũ kết hợp họa tiết nhũ vàng kim tinh xảo.", en: "Charming red base combined with delicate gold glitter patterns." },
             { vi: "Tone nude sang trọng điểm xuyết đá quý lấp lánh.", en: "Elegant nude tone accented with sparkling gemstones." },
@@ -92,17 +93,13 @@
                 if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
                 let code = "MS" + i.toString().padStart(2, '0');
                 let desc = descriptions[i % descriptions.length][lang];
-                
                 document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
                     <div class="product-card" id="${code}">
                         <div class="code-label">${code}</div>
                         <img src="IMG${i.toString().padStart(2, '0')}.jpg" class="product-img" onclick="showZoom('IMG${i.toString().padStart(2, '0')}.jpg', '${code}')">
                         <a href="https://m.me/100088924357778?text=Đặt mẫu ${code}" class="btn-buy">${lang=='vi'?'Đặt Mẫu':'Order'} ${code}</a>
                     </div>`;
-                
-                if (i % 2 === 0) {
-                    container.innerHTML += `<div class="quote-box"><p class="quote-highlight">${lang=='vi'?'Đỉnh cao nghệ thuật nail thượng lưu':'Top-tier nail art mastery'}</p><p>${desc}</p></div>`;
-                }
+                if (i % 2 === 0) container.innerHTML += `<div class="quote-box"><p class="quote-highlight">${lang=='vi'?'Đỉnh cao nghệ thuật nail thượng lưu':'Top-tier nail art mastery'}</p><p>${desc}</p></div>`;
             }
         }
 
@@ -122,7 +119,7 @@
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
-            else alert("Nhập mã đúng (VD: MS01)");
+            else alert("Vui lòng nhập đúng mã (VD: MS01)");
         }
 
         let slideIndex = 0;
