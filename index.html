@@ -3,65 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hana Nails Couture</title>
+    <title>Hana Nails Couture | Tuyệt Tác Móng Tay Thượng Lưu</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap');
-        :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
-        body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
-
-        .welcome-msg { text-align: center; color: var(--gold); padding: 12px; font-family: 'Playfair Display', serif; font-size: 1.2em; border-bottom: 1px solid var(--gold); background: #0e061a; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
         
-        /* Header đã tối ưu bố cục */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 15px; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; white-space: nowrap; }
-        .nav-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-        
-        .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; position: relative;
-            background: #1a0b2e;
-            background-image: radial-gradient(circle, #2d164d 0%, #1a0b2e 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="5" y="75" font-family="serif" font-size="80" fill="%23d4af37" opacity="0.15">✿</text></svg>');
+        :root { 
+            --gold: #d4af37; 
+            --deep-purple: #1a0b2e; 
+            --deep-purple-lighter: #2d164d;
+            --text-light: #ffffff; 
+            --text-muted: #e0e0e0;
         }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; justify-content: center; }
-        .slide.active { opacity: 1; }
-        .slide img { max-width: 90%; max-height: 90%; object-fit: contain; cursor: pointer; border-radius: 4px; }
 
-        .quote-box { text-align: center; max-width: 800px; margin: 20px auto; padding: 20px; color: var(--gold); font-family: 'Playfair Display', serif; border-top: 1px solid #332050; border-bottom: 1px solid #332050; }
-        .quote-highlight { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 5px; }
-        
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
-        .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
-        .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
-        .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
-        .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
-        
-        .action-link { color: var(--gold); text-decoration: none; font-weight: bold; border: 1px solid var(--gold); padding: 6px 12px; border-radius: 4px; font-size: 13px; background: #2d164d; }
-        .lang-btn { background: var(--gold); border: none; padding: 6px 10px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 13px; }
+        body { 
+            background-color: var(--deep-purple); 
+            color: var(--text-light); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+        }
 
-        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; }
-        #lightbox img { max-width: 90%; max-height: 80%; }
-        #lightbox-text { color: var(--gold); font-size: 24px; margin-top: 15px; font-weight: bold; }
+        /* 1. Lời chào cuốn hút */
+        .welcome-msg { 
+            text-align: center; 
+            color: var(--gold); 
+            padding: 15px 20px; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.3em; 
+            font-weight: 500;
+            border-bottom: 1px solid var(--gold); 
+            background: #0e061a; 
+            letter-spacing: 0.5px;
+        }
+        
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 5%; 
+            background: #1a0b2e; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+            border-bottom: 1px solid #332050;
+        }
+        
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 24px; 
+            font-weight: 700;
+            color: var(--gold); 
+            border: 2px solid var(--gold); 
+            padding: 8px 20px; 
+            white-space: nowrap; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-btn-group { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            flex-wrap: wrap; 
+        }
+        
+        /* 2. Tiêu đề Slider thu hút */
+        .slider-section {
+            text-align: center;
+            padding: 30px 20px 10px;
+        }
+        .slider-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .slider-subtitle {
+            font-weight: 300;
+            color: var(--text-muted);
+            font-size: 1em;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .slider-container { 
+            width: 100%; 
+            max-width: 700px; /* Tăng kích thước slider một chút */
+            height: 400px; /* Tăng chiều cao slider */
+            margin: 0 auto 30px; 
+            border: 3px solid var(--gold); /* Làm viền đậm hơn */
+            border-radius: 12px; /* Bo góc mềm mại hơn */
+            overflow: hidden; 
+            position: relative; 
+            background: #1a0b2e; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Thêm bóng đổ cho slider */
+        }
+        
+        .slide { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            opacity: 0; 
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Thêm hiệu ứng di chuyển nhẹ */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transform: scale(1.05); /* Slide mới hiện ra sẽ lớn hơn một chút */
+        }
+        .slide.active { 
+            opacity: 1; 
+            transform: scale(1); /* Slide active sẽ về kích thước chuẩn */
+        }
+        .slide img { 
+            max-width: 95%; /* Chiếm nhiều diện tích hơn */
+            max-height: 95%; 
+            object-fit: contain; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            transition: transform 0.3s ease;
+        }
+        .slide img:hover {
+            transform: scale(1.03); /* Phóng to nhẹ khi di chuột */
+        }
+        
+        /* CSS cho mã số trên Slider - được giữ nguyên */
+        .code-overlay { 
+            position: absolute; 
+            top: 15px; 
+            right: 15px; 
+            background: rgba(0,0,0,0.7); 
+            color: var(--gold); 
+            padding: 7px 14px; 
+            font-weight: 600; 
+            font-size: 14px;
+            border-radius: 6px; 
+            pointer-events: none; 
+            letter-spacing: 0.5px;
+        }
+
+        /* 3. Quote box với câu từ thu hút hơn */
+        .quote-box { 
+            text-align: center; 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 25px; 
+            color: var(--gold); 
+            font-family: 'Playfair Display', serif; 
+            border-top: 1px solid #332050; 
+            border-bottom: 1px solid #332050; 
+            background: rgba(45, 22, 77, 0.3); /* Nền mờ cho quote */
+            border-radius: 8px;
+        }
+        .quote-highlight { 
+            font-weight: 700; 
+            font-size: 1.4em; 
+            display: block; 
+            margin-bottom: 8px; 
+            letter-spacing: 0.5px;
+        }
+        .quote-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px; 
+            padding: 20px 5%; 
+            max-width: 1100px; 
+            margin: auto; 
+        }
+        
+        .product-card { 
+            background: var(--deep-purple-lighter); 
+            border-radius: 12px; 
+            padding: 15px; 
+            border: 1px solid #4a148c; 
+            position: relative; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .product-img { 
+            width: 100%; 
+            height: 280px; /* Tăng chiều cao ảnh sản phẩm */
+            object-fit: contain; 
+            background: #000; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: opacity 0.3s ease;
+        }
+        .product-img:hover {
+            opacity: 0.9;
+        }
+        
+        .code-label { 
+            position: absolute; 
+            top: 25px; 
+            left: 25px; 
+            background: rgba(0,0,0,0.7); 
+            color: var(--gold); 
+            padding: 6px 12px; 
+            font-weight: 600; 
+            border-radius: 6px; 
+        }
+        
+        /* 4. Nút bấm thu hút đặt hàng ngay */
+        .btn-buy { 
+            display: block; 
+            margin-top: 15px; 
+            padding: 14px; 
+            background: var(--gold); 
+            color: #000; 
+            text-align: center; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-buy:hover {
+            background: #f1c40f; /* Vàng sáng hơn khi hover */
+            transform: scale(1.02);
+        }
+        .btn-buy:active {
+            transform: scale(0.98);
+        }
+        
+        .action-link { 
+            color: var(--gold); 
+            text-decoration: none; 
+            font-weight: 600; 
+            border: 2px solid var(--gold); 
+            padding: 8px 16px; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            background: var(--deep-purple-lighter); 
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .action-link:hover {
+            background: var(--gold);
+            color: #000;
+        }
+        
+        .lang-btn { 
+            background: var(--gold); 
+            border: none; 
+            padding: 8px 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            color: #000;
+            transition: background 0.3s ease;
+        }
+        .lang-btn:hover {
+            background: #f1c40f;
+        }
+        .lang-btn.active {
+            background: #b8932d; /* Màu vàng tối hơn cho nút đang chọn */
+        }
+
+        /* 5. Tối ưu hóa Lightbox (Phóng to) */
+        #lightbox { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.95); /* Nền tối hơn */
+            z-index: 2000; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: zoom-out; /* Con trỏ chuột khi muốn đóng */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.open {
+            display: flex;
+            opacity: 1;
+        }
+        #lightbox img { 
+            max-width: 90%; /* Ảnh lớn hơn */
+            max-height: 85%; 
+            object-fit: contain;
+            border: 4px solid var(--gold);
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* Hào quang vàng xung quanh ảnh */
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        #lightbox.open img {
+            transform: scale(1);
+        }
+        #lightbox-text { 
+            color: var(--gold); 
+            font-size: 28px; 
+            margin-top: 20px; 
+            font-weight: 700; 
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+        /* Nút đóng lightbox */
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-lightbox:hover {
+            color: var(--gold);
+        }
     </style>
 </head>
 <body>
 
-    <div class="welcome-msg" id="welcome">✨ Hana Nails kính chào quý khách ✨</div>
+    <div class="welcome-msg" id="welcome">✨ Hana Nails Couture | Nơi Vẻ Đẹp Thượng Lưu Được Đánh Thức ✨</div>
     
     <header>
         <div class="logo">Hana Nails</div>
         <div class="nav-btn-group">
-            <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
-            <!-- Link bản đồ đã cập nhật -->
-            <a href="https://maps.app.goo.gl/q2E9Yh7dTTv7u3in6" target="_blank" class="action-link">📍 Bản đồ</a>
-            <input type="text" id="search" placeholder="Mã MS..." style="padding:6px; border-radius:4px; width:70px; border:none;">
-            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold; padding:6px 10px; border-radius:4px;">🔍</button>
-            <button class="lang-btn" onclick="setLang('vi')">VI</button>
+            <a href="tel:0937244764" class="action-link">☎ Liên Hệ Ngay: 0937 244 764</a>
+            <a href="https://maps.app.goo.gl/q2E9Yh7dTTv7u3in6" target="_blank" class="action-link">📍 Chỉ Đường</a>
+            <input type="text" id="search" placeholder="Nhập mã MS..." style="padding:9px; border-radius:6px; width:100px; border:1px solid #4a148c; background:#0e061a; color:#fff; font-size:14px;">
+            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:700; padding:9px 15px; border-radius:6px; color:#000;">🔍 Tìm</button>
+            <button class="lang-btn active" onclick="setLang('vi')">VI</button>
             <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
     </header>
 
-    <div class="slider-container" id="slider"></div>
+    <section class="slider-section">
+        <h2 class="slider-title" id="slider-title">Tuyệt Tác Xu Hướng</h2>
+        <p class="slider-subtitle" id="slider-subtitle">Khám phá ngay những mẫu móng độc quyền, đang làm mưa làm gió trong giới thượng lưu.</p>
+        <div class="slider-container" id="slider"></div>
+    </section>
+
     <section id="main-content"></section>
 
-    <div id="lightbox" onclick="this.style.display='none'">
+    <div id="lightbox" onclick="closeZoom()">
+        <span class="close-lightbox">&times;</span>
         <img id="lightbox-img" src="">
         <div id="lightbox-text"></div>
     </div>
@@ -69,22 +366,44 @@
     <script>
         const container = document.getElementById('main-content');
         const slider = document.getElementById('slider');
+        const welcomeEl = document.getElementById('welcome');
+        const sliderTitleEl = document.getElementById('slider-title');
+        const sliderSubtitleEl = document.getElementById('slider-subtitle');
         const totalImages = 72;
+
+        // 3. Cập nhật câu từ mô tả quote box
+        const quoteTitles = {
+            vi: "Tuyệt Tác Nail Art - Đẳng Cấp Thượng Lưu",
+            en: "Masterpiece Nail Art - Elite Sophistication"
+        };
         const descriptions = [
-            { vi: "Nền đỏ quyến rũ kết hợp họa tiết nhũ vàng kim tinh xảo.", en: "Charming red base combined with delicate gold glitter patterns." },
-            { vi: "Tone nude sang trọng điểm xuyết đá quý lấp lánh.", en: "Elegant nude tone accented with sparkling gemstones." },
-            { vi: "Sắc đen huyền bí phối cùng họa tiết hoa văn nổi khối.", en: "Mysterious black shade paired with embossed floral patterns." },
-            { vi: "Sắc trắng ngọc trai cùng đường vân đá marble đẳng cấp.", en: "Pearl white shade with luxurious marble stone veins." },
-            { vi: "Tone pastel dịu dàng với họa tiết vẽ tay thủ công.", en: "Gentle pastel tone with hand-drawn artistic details." }
+            { vi: "Sắc đỏ quyến rũ, kiêu sa phối cùng nhũ vàng kim tinh xảo. Một sự kết hợp hoàn hảo để tôn lên vẻ sang trọng quyền lực.", en: "Charming, elegant red paired with intricate gold glitter. A perfect combination to enhance powerful luxury." },
+            { vi: "Tone nude thời thượng điểm xuyết đá quý lấp lánh như những vì sao. Vẻ đẹp tinh tế, nhẹ nhàng nhưng đầy cuốn hút.", en: "Trendy nude tone accented with gemstones sparkling like stars. Sophisticated, gentle yet completely captivating beauty." },
+            { vi: "Sắc đen huyền bí kết hợp cùng họa tiết hoa văn nổi khối 3D đầy nghệ thuật. Dành cho những quý cô yêu thích sự khác biệt.", en: "Mysterious black combined with artistic 3D embossed patterns. For ladies who love distinctive style." },
+            { vi: "Sắc trắng ngọc trai thuần khiết, quý phái điểm xuyết đường vân đá marble đẳng cấp. Vẻ đẹp vượt thời gian.", en: "Pure, noble pearl white accented with luxurious marble veins. Timeless beauty." },
+            { vi: "Tone pastel dịu dàng, nữ tính với những họa tiết vẽ tay thủ công tỉ mỉ. Mang đến cảm giác tươi mới, tràn đầy sức sống.", en: "Gentle, feminine pastel tone with meticulously hand-drawn artistic details. Bringing a fresh, energetic feeling." }
         ];
 
+        // 4. Lời kêu gọi trên nút bấm
+        const orderTexts = {
+            vi: "Sở Hữu Ngay Mẫu",
+            en: "Get This Look Now"
+        };
+
+        let currentLang = 'vi';
+
         function init() {
+            // Khởi tạo Slider với mã số
             for(let i=1; i<=totalImages; i++) {
                 let code = "MS" + i.toString().padStart(2, '0');
                 let img = `IMG${i.toString().padStart(2, '0')}.jpg`;
-                slider.innerHTML += `<div class="slide ${i===1?'active':''}"><img src="${img}" onclick="showZoom('${img}', '${code}')"></div>`;
+                slider.innerHTML += `
+                    <div class="slide ${i===1?'active':''}">
+                        <div class="code-overlay">${code}</div>
+                        <img src="${img}" onclick="event.stopPropagation(); showZoom('${img}', '${code}')">
+                    </div>`;
             }
-            renderProducts('vi');
+            renderProducts(currentLang);
         }
 
         function renderProducts(lang) {
@@ -97,30 +416,84 @@
                     <div class="product-card" id="${code}">
                         <div class="code-label">${code}</div>
                         <img src="IMG${i.toString().padStart(2, '0')}.jpg" class="product-img" onclick="showZoom('IMG${i.toString().padStart(2, '0')}.jpg', '${code}')">
-                        <a href="https://m.me/100088924357778?text=Đặt mẫu ${code}" class="btn-buy">${lang=='vi'?'Đặt Mẫu':'Order'} ${code}</a>
+                        <a href="https://m.me/100088924357778?text=Tôi muốn sở hữu mẫu ${code}. Tư vấn cho tôi!" class="btn-buy">${orderTexts[lang]} ${code}</a>
                     </div>`;
-                if (i % 2 === 0) container.innerHTML += `<div class="quote-box"><p class="quote-highlight">${lang=='vi'?'Đỉnh cao nghệ thuật nail thượng lưu':'Top-tier nail art mastery'}</p><p>${desc}</p></div>`;
+                
+                // Quote box thu hút hơn
+                if (i % 2 === 0) container.innerHTML += `
+                    <div class="quote-box">
+                        <p class="quote-highlight">${quoteTitles[lang]}</p>
+                        <p class="quote-desc">${desc}</p>
+                    </div>`;
             }
         }
 
         function showZoom(src, code) { 
+            const lightbox = document.getElementById('lightbox');
             document.getElementById('lightbox-img').src = src; 
             document.getElementById('lightbox-text').innerText = code;
-            document.getElementById('lightbox').style.display = 'flex'; 
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Ngăn cuộn trang khi mở lightbox
+        }
+
+        function closeZoom() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('open');
+            document.body.style.overflow = ''; // Cho phép cuộn trang lại
         }
 
         function setLang(lang) {
-            document.getElementById('welcome').innerText = (lang == 'vi') ? "✨ Hana Nails kính chào quý khách ✨" : "✨ Hana Nails welcomes you ✨";
+            currentLang = lang;
+            
+            // Cập nhật lời chào và tiêu đề slider
+            if (lang === 'vi') {
+                welcomeEl.innerText = "✨ Hana Nails Couture | Nơi Vẻ Đẹp Thượng Lưu Được Đánh Thức ✨";
+                sliderTitleEl.innerText = "Tuyệt Tác Xu Hướng";
+                sliderSubtitleEl.innerText = "Khám phá ngay những mẫu móng độc quyền, đang làm mưa làm gió trong giới thượng lưu.";
+            } else {
+                welcomeEl.innerText = "✨ Hana Nails Couture | Where Elite Beauty Is Awakened ✨";
+                sliderTitleEl.innerText = "Trending Masterpieces";
+                sliderSubtitleEl.innerText = "Discover exclusive nail designs that are taking the luxury world by storm.";
+            }
+
+            // Cập nhật trạng thái nút ngôn ngữ
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
             renderProducts(lang);
         }
 
         function searchProduct() {
-            let val = document.getElementById('search').value.toUpperCase();
-            if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
+            let val = document.getElementById('search').value.toUpperCase().trim();
+            if(!val) return;
+            
+            // Hỗ trợ nhập 'ms1' thay vì 'MS01'
+            if(val.startsWith('MS')) {
+                let numPart = val.substring(2);
+                if(numPart.length < 2 && !isNaN(numPart)) {
+                    val = 'MS' + numPart.padStart(2, '0');
+                }
+            } else if (!isNaN(val)) {
+                 val = 'MS' + val.padStart(2, '0');
+            }
+
             let el = document.getElementById(val);
-            if(el) el.scrollIntoView({behavior: 'smooth'});
-            else alert("Vui lòng nhập đúng mã (VD: MS01)");
+            if(el) {
+                // Cuộn mượt mà đến sản phẩm và thêm hiệu ứng làm nổi bật nhẹ
+                el.scrollIntoView({behavior: 'smooth', block: 'center'});
+                el.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.8)';
+                setTimeout(() => el.style.boxShadow = '', 2000); // Xóa hiệu ứng sau 2s
+            } else {
+                alert(currentLang === 'vi' ? "Không tìm thấy mã này. Vui lòng nhập đúng (VD: MS01)" : "Code not found. Please enter correctly (e.g., MS01)");
+            }
         }
+
+        // Hỗ trợ phím Enter khi tìm kiếm
+        document.getElementById('search').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchProduct();
+            }
+        });
 
         let slideIndex = 0;
         function showSlides() {
@@ -128,7 +501,7 @@
             for(let s of slides) s.classList.remove('active');
             slideIndex = (slideIndex + 1) % slides.length;
             slides[slideIndex].classList.add('active');
-            setTimeout(showSlides, 4000);
+            setTimeout(showSlides, 5000); // Tăng thời gian chuyển slide lên 5s
         }
         
         init();
