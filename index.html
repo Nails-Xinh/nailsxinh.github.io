@@ -350,7 +350,7 @@
         const container = document.getElementById('main-content');
         const slider = document.getElementById('slider');
         const totalImages = 72;
-        // Link Fanpage Messenger của bạn
+        // Đã cập nhật đường link Fanpage Messenger mới của bạn
         const MESSENGER_LINK = "https://m.me/100088924357778"; 
 
         const descriptions = [
@@ -381,7 +381,6 @@
                 let code = "MS" + i.toString().padStart(2, '0');
                 let desc = descriptions[i % descriptions.length][lang];
                 
-                // Nút mua dẫn tới Messenger
                 let orderMsg = lang === 'vi' ? `Tôi muốn sở hữu mẫu ${code}. Tư vấn cho tôi!` : `I want to order ${code}. Please consult me!`;
                 let messengerUrl = `${MESSENGER_LINK}?text=${encodeURIComponent(orderMsg)}`;
 
