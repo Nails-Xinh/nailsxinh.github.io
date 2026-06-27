@@ -9,28 +9,19 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
+        .welcome-msg { text-align: center; color: var(--gold); padding: 15px; font-family: 'Playfair Display', serif; font-size: 1.2em; border-bottom: 1px solid var(--gold); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
         .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
-        .search-container { display: flex; background: #fff; border-radius: 5px; overflow: hidden; height: 35px; }
-        .search-container input { border: none; padding: 0 10px; width: 100px; outline: none; }
-        .search-container button { background: var(--gold); border: none; padding: 0 15px; cursor: pointer; font-weight: bold; }
+        .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; background: #000; position: relative; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; cursor: pointer; }
 
-        .nav-group { display: flex; align-items: center; gap: 8px; }
-        .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
-        .action-link { font-size: 11px; color: #fff; text-decoration: none; background: #332050; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--gold); }
-
-        .slider-container { width: 100%; max-width: 800px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; background: #000; }
-        .slider-wrapper { display: flex; width: 100%; height: 300px; transition: transform 0.5s ease; }
-        .slide-group { min-width: 100%; display: flex; height: 100%; }
-        .slide-group img { width: 50%; height: 100%; object-fit: contain; cursor: pointer; background: #000; }
+        .quote-box { text-align: center; max-width: 800px; margin: 20px auto; padding: 20px; color: var(--gold); font-family: 'Playfair Display', serif; border-top: 1px solid #332050; border-bottom: 1px solid #332050; }
+        .quote-highlight { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 10px; }
         
-        .marquee-container { background: #0e061a; color: var(--gold); padding: 10px 0; border-bottom: 1px solid #332050; font-style: italic; }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
-        
-        .quote-box { text-align: center; max-width: 800px; margin: 10px auto 30px auto; padding: 10px 20px; color: var(--gold); font-family: 'Playfair Display', serif; border-bottom: 1px solid #332050; }
-        .quote-highlight { font-weight: bold; font-size: 1.2em; font-style: italic; }
-        
         .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
         .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
@@ -42,62 +33,47 @@
 </head>
 <body>
 
+    <div class="welcome-msg">✨ Hana Nails kính chào quý khách ✨</div>
+    
     <header>
         <div class="logo">Hana Nails</div>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Nhập MS...">
-            <button onclick="searchProduct()">🔍</button>
-        </div>
-        <div class="nav-group">
-            <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
-            <a href="https://maps.app.goo.gl/aBvmAQfMeuD5JrMMA" target="_blank" class="action-link">📍 Bản đồ</a>
-            <button class="nav-btn" onclick="setLang('vi')">VI</button>
-            <button class="nav-btn" onclick="setLang('en')">EN</button>
+        <div style="display:flex; gap:10px;">
+            <input type="text" id="search" placeholder="Mã MS..." style="padding:5px; border-radius:4px;">
+            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold;">Tìm</button>
         </div>
     </header>
 
-    <div class="slider-container">
-        <div class="slider-wrapper" id="top-slider"></div>
-    </div>
+    <div class="slider-container" id="slider"></div>
 
-    <div class="marquee-container">
-        <marquee scrollamount="4">✨ Hana Nails - Nơi vẻ đẹp được định nghĩa lại bằng sự hoàn mỹ | Đẳng cấp nail thượng lưu ✨</marquee>
-    </div>
+    <section id="main-content"></section>
 
     <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
-    <section id="main-content"></section>
 
     <script>
         const container = document.getElementById('main-content');
-        const sliderWrapper = document.getElementById('top-slider');
+        const slider = document.getElementById('slider');
         const totalImages = 72;
 
-        const quotes = [
-            "Vẻ đẹp kiêu sa, bắt trọn ánh nhìn trong từng cử động.",
-            "Đẳng cấp không cần phô trương, chỉ cần sự tinh tế.",
-            "Hãy để đôi tay kể câu chuyện về phong cách sống của bạn.",
-            "Hana Nails - Tôn vinh nét đẹp độc tôn của chính bạn.",
-            "Đơn giản là đỉnh cao của sự sang trọng.",
-            "Nâng niu giá trị bản thân bắt đầu từ đôi bàn tay.",
-            "Thần thái đỉnh cao bắt đầu từ đôi bàn tay kiêu sa.",
-            "Trở thành phiên bản rực rỡ nhất của chính mình."
+        const descriptions = [
+            "Nền đỏ quyến rũ kết hợp họa tiết nhũ vàng kim tinh xảo.",
+            "Tone nude sang trọng điểm xuyết đá quý lấp lánh.",
+            "Sắc đen huyền bí phối cùng họa tiết hoa văn nổi khối thời thượng.",
+            "Sắc trắng ngọc trai cùng đường vân đá marble đẳng cấp.",
+            "Tone pastel dịu dàng với họa tiết vẽ tay thủ công sắc nét."
         ];
 
-        // 1. Tạo Slider
-        for(let i=0; i < totalImages; i+=2) {
-            let img1 = `IMG${(i+1).toString().padStart(2, '0')}.jpg`;
-            let img2 = `IMG${(i+2).toString().padStart(2, '0')}.jpg`;
-            let group = document.createElement('div');
-            group.className = "slide-group";
-            group.innerHTML = `<img src="${img1}" onclick="showZoom('${img1}')"><img src="${img2}" onclick="showZoom('${img2}')">`;
-            sliderWrapper.appendChild(group);
+        // 1. Tạo Slider 1 ảnh
+        for(let i=1; i<=totalImages; i++) {
+            let img = `IMG${i.toString().padStart(2, '0')}.jpg`;
+            slider.innerHTML += `<div class="slide ${i===1?'active':''}"><img src="${img}" onclick="showZoom('${img}')"></div>`;
         }
 
-        // 2. Tạo sản phẩm và lời dẫn
+        // 2. Tạo sản phẩm
         for(let i=1; i<=totalImages; i++) {
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
-            
             let code = "MS" + i.toString().padStart(2, '0');
+            let desc = descriptions[i % descriptions.length];
+            
             document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
                 <div class="product-card" id="${code}">
                     <div class="code-label">${code}</div>
@@ -106,21 +82,21 @@
                 </div>`;
             
             if (i % 2 === 0) {
-                let q = quotes[(i/2 - 1) % quotes.length];
                 container.innerHTML += `
                     <div class="quote-box">
-                        <p class="quote-highlight">${q}</p>
-                        <p>Tuyệt tác thủ công, tôn vinh vẻ đẹp độc bản của quý khách.</p>
+                        <p class="quote-highlight">Đỉnh cao nghệ thuật nail thượng lưu</p>
+                        <p>${desc} - Một kiệt tác dành riêng cho đôi tay kiêu sa của quý khách.</p>
                     </div>`;
             }
         }
 
-        // 3. Logic Slider chạy tự động
+        // Logic Slider
         let slideIndex = 0;
         function showSlides() {
-            const slides = document.getElementsByClassName("slide-group");
-            sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+            const slides = document.getElementsByClassName("slide");
+            for(let s of slides) s.classList.remove('active');
             slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add('active');
             setTimeout(showSlides, 4000);
         }
         showSlides();
@@ -131,14 +107,7 @@
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
-            else alert("Vui lòng nhập đúng mã (Ví dụ: MS01)");
-        }
-        function setLang(lang) {
-            const data = (lang === 'vi') ? { b: "Đặt Mẫu" } : { b: "Order Model" };
-            document.querySelectorAll('.btn-buy').forEach((el, index) => {
-                let code = (index + 1).toString().padStart(2, '0');
-                el.textContent = data.b + " MS" + code;
-            });
+            else alert("Nhập mã MS (VD: MS01)");
         }
     </script>
 </body>
