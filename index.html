@@ -20,14 +20,19 @@
         .nav-btn { background: var(--gold); color: #000; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; border: none; cursor: pointer; }
         .action-link { font-size: 11px; color: #fff; text-decoration: none; background: #332050; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--gold); }
 
-        /* Khung Slider ổn định */
-        .slider-container { width: 100%; max-width: 800px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; background: #1a0b2e; position: relative; }
-        .slider-wrapper { display: flex; width: 100%; height: 300px; position: relative; }
+        .slider-container { width: 100%; max-width: 800px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; background: #1a0b2e; }
+        .slider-wrapper { display: flex; width: 100%; height: 300px; }
         .slide-group { min-width: 100%; display: flex; height: 100%; transition: transform 0.5s ease; }
-        .slide-group img { width: 50%; height: 100%; object-fit: contain; cursor: pointer; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><text x="10" y="60" font-family="serif" font-size="40" fill="%23d4af37" opacity="0.1">✿</text></svg>'); }
+        .slide-group img { width: 50%; height: 100%; object-fit: contain; cursor: pointer; background: #000; }
         
         .marquee-container { background: #0e061a; color: var(--gold); padding: 10px 0; border-bottom: 1px solid #332050; font-style: italic; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px 20px 5px 20px; max-width: 1000px; margin: auto; }
+        
+        /* Phần lời dẫn đẳng cấp */
+        .quote-box { text-align: center; max-width: 800px; margin: 0 auto 30px auto; padding: 10px 20px; color: var(--gold); font-family: 'Playfair Display', serif; border-top: 1px solid #332050; }
+        .quote-box p { margin: 5px 0; font-style: italic; }
+        .quote-highlight { font-weight: bold; font-size: 1.1em; }
+
         .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
         .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
@@ -69,26 +74,42 @@
         const sliderWrapper = document.getElementById('top-slider');
         const totalImages = 72;
 
+        const quotes = [
+            "Quý khách là nàng thơ của Hana Nails.", "Tôn vinh khí chất, nâng tầm phong cách.",
+            "Vì đôi tay của quý khách xứng đáng những điều hoàn mỹ nhất.", "Đẹp sang trọng, chạm tinh tế.",
+            "Hana Nails - Nơi định nghĩa lại sự kiêu sa.", "Tuyệt tác nghệ thuật dành riêng cho quý khách.",
+            "Tự tin khẳng định vị thế chủ nhân.", "Sự đẳng cấp nằm ở từng đường nét nhỏ nhất."
+        ];
+
+        // Tạo Slider
         for(let i=0; i < totalImages; i+=2) {
             let img1 = `IMG${(i+1).toString().padStart(2, '0')}.jpg`;
             let img2 = (i+2 <= totalImages) ? `IMG${(i+2).toString().padStart(2, '0')}.jpg` : "";
             let group = document.createElement('div');
             group.className = "slide-group";
-            group.innerHTML = `<img src="${img1}" onclick="showZoom('${img1}')">` + 
-                             (img2 ? `<img src="${img2}" onclick="showZoom('${img2}')">` : `<img src="">`);
+            group.innerHTML = `<img src="${img1}" onclick="showZoom('${img1}')"><img src="${img2}" onclick="showZoom('${img2}')">`;
             sliderWrapper.appendChild(group);
         }
 
+        // Tạo sản phẩm và lời dẫn
         for(let i=1; i<=totalImages; i++) {
-            let code = "MS" + i.toString().padStart(2, '0');
-            let imgName = `IMG${i.toString().padStart(2, '0')}.jpg`;
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
+            let code = "MS" + i.toString().padStart(2, '0');
             document.getElementById(`grid-${Math.ceil(i/2)}`).innerHTML += `
                 <div class="product-card" id="${code}">
                     <div class="code-label">${code}</div>
-                    <img src="${imgName}" class="product-img" onclick="showZoom('${imgName}')">
-                    <a href="https://m.me/100088924357778?text=Tôi muốn đặt mẫu ${code}" class="btn-buy">Đặt Mẫu ${code}</a>
+                    <img src="IMG${code}.jpg" class="product-img" onclick="showZoom('IMG${code}.jpg')">
+                    <a href="https://m.me/100088924357778?text=Đặt mẫu ${code}" class="btn-buy">Đặt Mẫu ${code}</a>
                 </div>`;
+            
+            if (i % 2 === 0) {
+                let q = quotes[(i/2 - 1) % quotes.length];
+                container.innerHTML += `
+                    <div class="quote-box">
+                        <p class="quote-highlight">${q}</p>
+                        <p>Thiết kế tinh xảo dành riêng cho đôi tay kiêu sa của quý khách.</p>
+                    </div>`;
+            }
         }
 
         let slideIndex = 0;
@@ -100,11 +121,7 @@
         }
         showSlides();
 
-        function showZoom(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-        
+        function showZoom(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
         function searchProduct() {
             let val = document.getElementById('search').value.toUpperCase();
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
@@ -112,7 +129,6 @@
             if(el) el.scrollIntoView({behavior: 'smooth'});
             else alert("Vui lòng nhập đúng mã (Ví dụ: MS01)");
         }
-        
         function setLang(lang) {
             const data = (lang === 'vi') ? { b: "Đặt Mẫu" } : { b: "Order Model" };
             document.querySelectorAll('.btn-buy').forEach((el, index) => {
