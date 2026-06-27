@@ -13,6 +13,7 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
+        /* Slider với hoa văn chìm sang trọng */
         .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; position: relative;
             background: #1a0b2e;
             background-image: radial-gradient(circle, #2d164d 0%, #1a0b2e 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="5" y="75" font-family="serif" font-size="80" fill="%23d4af37" opacity="0.15">✿</text></svg>');
@@ -46,7 +47,8 @@
     <header>
         <div class="logo">Hana Nails</div>
         <div class="nav-btn-group">
-            <a href="https://www.google.com/maps" target="_blank" class="action-link">📍 Bản đồ</a>
+            <a href="tel:0937244764" class="action-link">☎ 0937 244 764</a>
+            <a href="https://maps.app.goo.gl/your-link-here" target="_blank" class="action-link">📍 Bản đồ</a>
             <input type="text" id="search" placeholder="Mã MS..." style="padding:5px; border-radius:4px; width:70px; border:none;">
             <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold; padding:5px 10px; border-radius:4px;">🔍</button>
             <button class="lang-btn" onclick="setLang('vi')">VI</button>
@@ -75,11 +77,11 @@
             { vi: "Tone pastel dịu dàng với họa tiết vẽ tay thủ công.", en: "Gentle pastel tone with hand-drawn artistic details." }
         ];
 
-        // Khởi tạo
         function init() {
             for(let i=1; i<=totalImages; i++) {
+                let code = "MS" + i.toString().padStart(2, '0');
                 let img = `IMG${i.toString().padStart(2, '0')}.jpg`;
-                slider.innerHTML += `<div class="slide ${i===1?'active':''}"><img src="${img}" onclick="showZoom('${img}', 'MS${i.toString().padStart(2, '0')}')"></div>`;
+                slider.innerHTML += `<div class="slide ${i===1?'active':''}"><img src="${img}" onclick="showZoom('${img}', '${code}')"></div>`;
             }
             renderProducts('vi');
         }
@@ -120,7 +122,7 @@
             if(val.length === 3 && val.startsWith('MS')) val = 'MS0' + val.substring(2);
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
-            else alert("Nhập đúng mã (VD: MS01)");
+            else alert("Nhập mã đúng (VD: MS01)");
         }
 
         let slideIndex = 0;
@@ -131,6 +133,7 @@
             slides[slideIndex].classList.add('active');
             setTimeout(showSlides, 4000);
         }
+        
         init();
         showSlides();
     </script>
