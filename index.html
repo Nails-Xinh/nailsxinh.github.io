@@ -9,23 +9,29 @@
         :root { --gold: #d4af37; --deep-purple: #1a0b2e; --text-light: #ffffff; }
         body { background-color: var(--deep-purple); color: var(--text-light); font-family: 'Montserrat', sans-serif; margin: 0; }
 
-        .welcome-msg { text-align: center; color: var(--gold); padding: 15px; font-family: 'Playfair Display', serif; font-size: 1.2em; border-bottom: 1px solid var(--gold); }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
+        .welcome-msg { text-align: center; color: var(--gold); padding: 10px; font-family: 'Playfair Display', serif; font-size: 1.1em; border-bottom: 1px solid var(--gold); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: #1a0b2e; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; }
         
-        .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; background: #000; position: relative; }
+        /* Slider với hoa văn nền */
+        .slider-container { width: 100%; max-width: 600px; height: 350px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; position: relative;
+            background: #0e061a radial-gradient(circle, #2d164d 0%, #1a0b2e 100%);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><text x="10" y="45" font-family="serif" font-size="40" fill="%23d4af37" opacity="0.08">✿</text></svg>');
+        }
         .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: contain; cursor: pointer; }
 
         .quote-box { text-align: center; max-width: 800px; margin: 20px auto; padding: 20px; color: var(--gold); font-family: 'Playfair Display', serif; border-top: 1px solid #332050; border-bottom: 1px solid #332050; }
-        .quote-highlight { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 10px; }
+        .quote-highlight { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 5px; }
         
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
         .product-card { background: #2d164d; border-radius: 8px; padding: 10px; border: 1px solid #4a148c; position: relative; }
         .product-img { width: 100%; height: 250px; object-fit: contain; background: #000; border-radius: 4px; cursor: pointer; }
         .code-label { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: var(--gold); padding: 5px 10px; font-weight: bold; border-radius: 4px; }
         .btn-buy { display: block; margin-top: 10px; padding: 12px; background: var(--gold); color: #000; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+        
+        .lang-btn { background: var(--gold); border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; margin-left: 5px; border-radius: 3px; }
 
         #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
         #lightbox img { max-width: 90%; max-height: 90%; }
@@ -37,9 +43,11 @@
     
     <header>
         <div class="logo">Hana Nails</div>
-        <div style="display:flex; gap:10px;">
-            <input type="text" id="search" placeholder="Mã MS..." style="padding:5px; border-radius:4px;">
-            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold;">Tìm</button>
+        <div>
+            <input type="text" id="search" placeholder="Mã MS..." style="padding:5px; border-radius:4px; width:80px;">
+            <button onclick="searchProduct()" style="background:var(--gold); border:none; cursor:pointer; font-weight:bold; padding:5px 10px;">🔍</button>
+            <button class="lang-btn" onclick="setLang('vi')">VI</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
     </header>
 
@@ -62,13 +70,13 @@
             "Tone pastel dịu dàng với họa tiết vẽ tay thủ công sắc nét."
         ];
 
-        // 1. Tạo Slider 1 ảnh
+        // Tạo Slider
         for(let i=1; i<=totalImages; i++) {
             let img = `IMG${i.toString().padStart(2, '0')}.jpg`;
             slider.innerHTML += `<div class="slide ${i===1?'active':''}"><img src="${img}" onclick="showZoom('${img}')"></div>`;
         }
 
-        // 2. Tạo sản phẩm
+        // Tạo lưới sản phẩm
         for(let i=1; i<=totalImages; i++) {
             if (i % 2 === 1) container.innerHTML += `<div class="product-grid" id="grid-${Math.ceil(i/2)}"></div>`;
             let code = "MS" + i.toString().padStart(2, '0');
@@ -85,12 +93,12 @@
                 container.innerHTML += `
                     <div class="quote-box">
                         <p class="quote-highlight">Đỉnh cao nghệ thuật nail thượng lưu</p>
-                        <p>${desc} - Một kiệt tác dành riêng cho đôi tay kiêu sa của quý khách.</p>
+                        <p>${desc} - Tuyệt tác dành riêng cho đôi tay kiêu sa của quý khách.</p>
                     </div>`;
             }
         }
 
-        // Logic Slider
+        // Logic Slider & Chức năng
         let slideIndex = 0;
         function showSlides() {
             const slides = document.getElementsByClassName("slide");
@@ -108,6 +116,13 @@
             let el = document.getElementById(val);
             if(el) el.scrollIntoView({behavior: 'smooth'});
             else alert("Nhập mã MS (VD: MS01)");
+        }
+        function setLang(lang) {
+            const data = (lang === 'vi') ? "Đặt Mẫu" : "Order Model";
+            document.querySelectorAll('.btn-buy').forEach((el, index) => {
+                let code = (index + 1).toString().padStart(2, '0');
+                el.textContent = data + " MS" + code;
+            });
         }
     </script>
 </body>
